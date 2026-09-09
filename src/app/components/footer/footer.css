@@ -1,0 +1,534 @@
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.site-footer {
+  width: 100%;
+  background: #f8f9fb;
+  color: #171b22;
+  border-top: 1px solid rgba(20, 30, 50, 0.08);
+  scroll-margin-top: 82px;
+}
+
+.footer-shell {
+  width: min(1180px, calc(100% - 70px));
+  margin: 0 auto;
+}
+
+
+/* =========================================================
+   FOOTER TOP
+========================================================= */
+
+.footer-top {
+  display: grid;
+
+  grid-template-columns:
+    minmax(250px, 1.45fr)
+    minmax(110px, 0.75fr)
+    minmax(150px, 0.95fr)
+    minmax(220px, 1.15fr);
+
+  column-gap: 48px;
+
+  padding: 48px 0 34px;
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.footer-brand {
+  align-self: start;
+}
+
+.footer-logo {
+  display: inline-flex;
+  align-items: center;
+
+  color: #171b22;
+  text-decoration: none;
+}
+
+.logo-mark {
+  position: relative;
+
+  width: 25px;
+  height: 25px;
+
+  margin-right: 10px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* Logo cross */
+
+.logo-mark::before,
+.logo-mark::after {
+  content: "";
+
+  position: absolute;
+
+  width: 17px;
+  height: 2px;
+
+  background: #438cff;
+}
+
+.logo-mark::before {
+  transform: rotate(45deg);
+}
+
+.logo-mark::after {
+  transform: rotate(-45deg);
+}
+
+
+/* Center square */
+
+.logo-mark span:first-child {
+  position: absolute;
+
+  width: 8px;
+  height: 8px;
+
+  border: 2px solid #438cff;
+
+  transform: rotate(45deg);
+}
+
+.logo-mark span:last-child {
+  display: none;
+}
+
+
+.logo-name {
+  font-size: 21px;
+  font-weight: 700;
+
+  letter-spacing: -0.55px;
+}
+
+.logo-dot {
+  margin-left: 1px;
+
+  color: #438cff;
+
+  font-size: 24px;
+  font-weight: 700;
+}
+
+
+.footer-tagline {
+  margin-top: 14px;
+
+  max-width: 285px;
+
+  color: #77808d;
+
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   FOOTER COLUMNS
+========================================================= */
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.column-label {
+  display: block;
+
+  margin-bottom: 15px;
+
+  color: #8b939e;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  letter-spacing: 1.7px;
+}
+
+
+.footer-column a {
+  width: fit-content;
+
+  margin-bottom: 8px;
+
+  color: #505966;
+
+  text-decoration: none;
+
+  font-size: 12px;
+  line-height: 1.4;
+
+  transition:
+    color 0.22s ease,
+    transform 0.22s ease;
+}
+
+
+.footer-column a:hover {
+  color: #438cff;
+
+  transform: translateX(3px);
+}
+
+
+/* =========================================================
+   CONNECT
+========================================================= */
+
+.footer-connect a {
+  font-size: 11.5px;
+
+  word-break: break-word;
+}
+
+.connect-location {
+  margin-top: 3px;
+
+  color: #89919c;
+
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   FOOTER BOTTOM
+========================================================= */
+
+.footer-bottom {
+  min-height: 52px;
+
+  display: grid;
+
+  grid-template-columns: 1fr auto 1fr;
+
+  align-items: center;
+
+  column-gap: 20px;
+
+  border-top: 1px solid rgba(20, 30, 50, 0.08);
+}
+
+
+.footer-copy {
+  color: #8a929d;
+
+  font-size: 10px;
+}
+
+
+.footer-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  color: #7a828e;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  letter-spacing: 0.9px;
+
+  white-space: nowrap;
+}
+
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #438cff;
+
+  box-shadow:
+    0 0 0 4px rgba(67, 140, 255, 0.08);
+
+  animation: footerPulse 2.2s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   BACK TO TOP
+========================================================= */
+
+.back-top {
+  justify-self: end;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 8px;
+
+  color: #5c6571;
+
+  text-decoration: none;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  letter-spacing: 1px;
+
+  transition:
+    color 0.22s ease,
+    transform 0.22s ease;
+}
+
+
+.back-top-icon {
+  width: 24px;
+  height: 24px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(20, 30, 50, 0.11);
+
+  border-radius: 50%;
+
+  font-size: 12px;
+
+  transition:
+    border-color 0.22s ease,
+    background 0.22s ease;
+}
+
+
+.back-top:hover {
+  color: #438cff;
+
+  transform: translateY(-2px);
+}
+
+
+.back-top:hover .back-top-icon {
+  border-color: rgba(67, 140, 255, 0.35);
+
+  background: rgba(67, 140, 255, 0.06);
+}
+
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+:host-context(body.dark-mode) .site-footer {
+  background: #090c11;
+
+  color: #f1f3f6;
+
+  border-top-color: rgba(255, 255, 255, 0.07);
+}
+
+
+:host-context(body.dark-mode) .footer-logo {
+  color: #f1f3f6;
+}
+
+
+:host-context(body.dark-mode) .footer-tagline {
+  color: #737d8b;
+}
+
+
+:host-context(body.dark-mode) .column-label {
+  color: #68717e;
+}
+
+
+:host-context(body.dark-mode) .footer-column a {
+  color: #9ba3af;
+}
+
+
+:host-context(body.dark-mode) .footer-column a:hover {
+  color: #438cff;
+}
+
+
+:host-context(body.dark-mode) .connect-location {
+  color: #707987;
+}
+
+
+:host-context(body.dark-mode) .footer-bottom {
+  border-top-color: rgba(255, 255, 255, 0.07);
+}
+
+
+:host-context(body.dark-mode) .footer-copy {
+  color: #68717d;
+}
+
+
+:host-context(body.dark-mode) .footer-status {
+  color: #727b88;
+}
+
+
+:host-context(body.dark-mode) .back-top {
+  color: #89929e;
+}
+
+
+:host-context(body.dark-mode) .back-top-icon {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+
+:host-context(body.dark-mode) .back-top:hover .back-top-icon {
+  border-color: rgba(67, 140, 255, 0.35);
+
+  background: rgba(67, 140, 255, 0.07);
+}
+
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+@keyframes footerPulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.9);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 980px) {
+
+  .footer-shell {
+    width: min(100% - 50px, 760px);
+  }
+
+  .footer-top {
+    grid-template-columns:
+      1.3fr
+      0.8fr
+      0.95fr;
+
+    column-gap: 32px;
+
+    row-gap: 32px;
+
+    padding-top: 42px;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  .footer-tagline {
+    max-width: 390px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 680px) {
+
+  .footer-shell {
+    width: calc(100% - 36px);
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+
+    gap: 28px 25px;
+
+    padding: 38px 0 28px;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  .footer-connect {
+    grid-column: 1 / -1;
+  }
+
+  .footer-bottom {
+    min-height: auto;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: space-between;
+
+    gap: 14px;
+
+    padding: 17px 0;
+  }
+
+  .footer-status {
+    order: 3;
+
+    width: 100%;
+
+    justify-content: flex-start;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 420px) {
+
+  .footer-top {
+    grid-template-columns: 1fr;
+
+    gap: 24px;
+  }
+
+  .footer-brand,
+  .footer-connect {
+    grid-column: auto;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 12px;
+  }
+
+  .back-top {
+    justify-self: auto;
+  }
+
+}

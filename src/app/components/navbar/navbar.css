@@ -1,0 +1,1892 @@
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar {
+  --accent: #438cff;
+
+  width: 100%;
+  height: 64px;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+
+  background: rgba(255, 255, 255, 0.82);
+
+  border-bottom:
+    1px solid rgba(20, 30, 50, 0.08);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  box-shadow:
+    0 8px 30px rgba(20, 30, 50, 0.05);
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+/* =====================================================
+   DARK NAVBAR
+===================================================== */
+
+:host-context(body.dark-mode) .navbar {
+  background:
+    rgba(9, 12, 17, 0.90);
+
+  border-bottom-color:
+    rgba(255, 255, 255, 0.07);
+
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =====================================================
+   NAV INNER
+===================================================== */
+
+.nav-inner {
+  width:
+    min(1280px, calc(100% - 100px));
+
+  height: 100%;
+
+  margin: 0 auto;
+
+  display: flex;
+
+  align-items: center;
+}
+
+
+/* =====================================================
+   BRAND
+===================================================== */
+
+.brand {
+  display: flex;
+
+  align-items: center;
+
+  min-width: 170px;
+
+  height: 100%;
+
+  margin-right: auto;
+
+  color: #151922;
+
+  text-decoration: none;
+}
+
+
+:host-context(body.dark-mode) .brand {
+  color: #f3f6fb;
+}
+
+
+/* =====================================================
+   BRAND ICON
+===================================================== */
+
+.brand-icon {
+  width: 25px;
+  height: 25px;
+
+  margin-right: 11px;
+
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+
+.brand-icon span {
+  width: 16px;
+  height: 2px;
+
+  position: absolute;
+
+  border-radius: 2px;
+
+  background: var(--accent);
+}
+
+
+.brand-icon span:first-child {
+  transform:
+    rotate(45deg);
+}
+
+
+.brand-icon span:last-child {
+  transform:
+    rotate(-45deg);
+
+  opacity: 0.35;
+}
+
+
+/* =====================================================
+   BRAND TEXT
+===================================================== */
+
+.brand-name {
+  font-size: 23px;
+
+  font-weight: 700;
+
+  letter-spacing: -0.8px;
+
+  line-height: 1;
+}
+
+
+.brand-dot {
+  color: var(--accent);
+
+  font-size: 25px;
+}
+
+
+/* =====================================================
+   DESKTOP NAVIGATION
+===================================================== */
+
+.navigation {
+  position: absolute;
+
+  left: 50%;
+
+  transform:
+    translateX(-50%);
+
+  height: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 37px;
+}
+
+
+/* =====================================================
+   DESKTOP NAV ITEMS
+===================================================== */
+
+.nav-item {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  height: 100%;
+
+  padding: 0;
+
+  color: #687386;
+
+  text-decoration: none;
+
+  font-size: 14px;
+
+  font-weight: 500;
+
+  line-height: 1;
+
+  white-space: nowrap;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.nav-item:hover {
+  color: #151922;
+
+  transform:
+    translateY(-1px);
+}
+
+
+.nav-item.active {
+  color: #151922;
+}
+
+
+:host-context(body.dark-mode) .nav-item {
+  color: #8b97a8;
+}
+
+
+:host-context(body.dark-mode) .nav-item:hover,
+:host-context(body.dark-mode) .nav-item.active {
+  color: #f4f7fb;
+}
+
+
+/* =====================================================
+   DESKTOP ACTIVE LINE
+===================================================== */
+
+.nav-item::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+
+  bottom: 6px;
+
+  width: 0;
+
+  height: 2px;
+
+  transform:
+    translateX(-50%);
+
+  border-radius: 10px;
+
+  background: var(--accent);
+
+  transition:
+    width 0.25s ease;
+}
+
+
+.nav-item:hover::after,
+.nav-item.active::after {
+  width: 18px;
+}
+
+
+/* =====================================================
+   MOBILE ICONS
+===================================================== */
+
+.nav-item-icon {
+  display: none;
+}
+
+
+/* =====================================================
+   MOBILE LET'S TALK
+===================================================== */
+
+.mobile-talk {
+  display: none;
+}
+
+
+/* =====================================================
+   NAV ACTIONS
+===================================================== */
+
+.nav-actions {
+  margin-left: auto;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  height: 100%;
+}
+
+
+/* =====================================================
+   RESUME
+===================================================== */
+
+.resume-button {
+  min-width: 94px;
+
+  height: 40px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 9px;
+
+  margin: 0;
+
+  padding: 0;
+
+  border: none;
+
+  outline: none;
+
+  background: transparent;
+
+  color: #202632;
+
+  text-decoration: none;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  line-height: 1;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.resume-button:hover {
+  color: #151922;
+
+  transform:
+    translateY(-1px);
+}
+
+
+.resume-icon {
+  width: 27px;
+
+  height: 27px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin: 0;
+
+  padding: 0;
+
+  border: none;
+
+  border-radius: 0;
+
+  background: transparent;
+
+  color: var(--accent);
+
+  font-size: 16px;
+
+  font-weight: 700;
+
+  line-height: 1;
+
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease;
+}
+
+
+.resume-button:hover .resume-icon {
+  transform:
+    translateY(2px);
+}
+
+
+:host-context(body.dark-mode) .resume-button {
+  color: #e5e7eb;
+}
+
+
+:host-context(body.dark-mode) .resume-button:hover {
+  color: #ffffff;
+}
+
+
+:host-context(body.dark-mode) .resume-icon {
+  color: #60a5fa;
+}
+
+
+/* =====================================================
+   THEME BUTTON
+===================================================== */
+
+.theme-toggle {
+  width: 40px;
+
+  height: 40px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin: 0;
+
+  padding: 0;
+
+  flex-shrink: 0;
+
+  border: none;
+
+  outline: none;
+
+  background: transparent;
+
+  color: #596577;
+
+  cursor: pointer;
+
+  box-sizing: border-box;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.theme-toggle:hover {
+  color: var(--accent);
+
+  transform:
+    translateY(-1px);
+}
+
+
+:host-context(body.dark-mode) .theme-toggle {
+  color: #cbd5e1;
+}
+
+
+/* =====================================================
+   THEME ICON
+===================================================== */
+
+.theme-icon {
+  width: 24px;
+
+  height: 24px;
+
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  line-height: 0;
+}
+
+
+.theme-icon svg {
+  width: 24px;
+
+  height: 24px;
+
+  position: absolute;
+
+  display: block;
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.3s ease;
+}
+
+
+.theme-moon {
+  opacity: 1;
+
+  transform:
+    scale(1)
+    rotate(0deg);
+}
+
+
+.theme-sun {
+  opacity: 0;
+
+  transform:
+    scale(0.7)
+    rotate(-45deg);
+}
+
+
+.theme-icon.dark .theme-moon {
+  opacity: 0;
+
+  transform:
+    scale(0.7)
+    rotate(45deg);
+}
+
+
+.theme-icon.dark .theme-sun {
+  opacity: 1;
+
+  transform:
+    scale(1)
+    rotate(0deg);
+}
+
+
+/* =====================================================
+   DESKTOP LET'S TALK
+===================================================== */
+
+.talk-button {
+  min-width: 132px;
+
+  height: 42px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 12px;
+
+  padding:
+    0 6px 0 17px;
+
+  margin: 0;
+
+  border:
+    1px solid rgba(20, 30, 50, 0.1);
+
+  border-radius: 7px;
+
+  background:
+    rgba(20, 30, 50, 0.025);
+
+  color: #202632;
+
+  text-decoration: none;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  line-height: 1;
+
+  white-space: nowrap;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.talk-button:hover {
+  color: #151922;
+
+  border-color:
+    rgba(67, 140, 255, 0.35);
+
+  background:
+    rgba(67, 140, 255, 0.06);
+
+  transform:
+    translateY(-1px);
+}
+
+
+:host-context(body.dark-mode) .talk-button {
+  color: #eaf0f7;
+
+  border-color:
+    rgba(255, 255, 255, 0.09);
+
+  background:
+    rgba(255, 255, 255, 0.035);
+}
+
+
+:host-context(body.dark-mode) .talk-button:hover {
+  color: #ffffff;
+}
+
+
+.talk-text {
+  font-size: 12px;
+
+  font-weight: 600;
+}
+
+
+.talk-icon {
+  width: 29px;
+
+  height: 29px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 5px;
+
+  color: var(--accent);
+
+  background:
+    rgba(67, 140, 255, 0.10);
+
+  font-size: 16px;
+
+  line-height: 1;
+}
+
+
+/* =====================================================
+   HAMBURGER
+===================================================== */
+
+.menu-toggle {
+  display: none;
+
+  width: 36px;
+
+  height: 36px;
+
+  margin: 0;
+
+  padding: 0;
+
+  border: none;
+
+  outline: none;
+
+  background: transparent;
+
+  align-items: center;
+
+  justify-content: center;
+
+  flex-direction: column;
+
+  gap: 5px;
+
+  cursor: pointer;
+
+  flex-shrink: 0;
+
+  box-sizing: border-box;
+}
+
+
+.menu-toggle span {
+  display: block;
+
+  height: 2px;
+
+  margin: 0;
+
+  padding: 0;
+
+  border-radius: 0;
+
+  background: #171717;
+
+  transition:
+    width 0.25s ease,
+    transform 0.25s ease,
+    opacity 0.2s ease,
+    background-color 0.25s ease;
+}
+
+
+.menu-toggle span:nth-child(1) {
+  width: 20px;
+}
+
+
+.menu-toggle span:nth-child(2) {
+  width: 12px;
+
+  align-self: flex-end;
+
+  margin-right: 6px;
+}
+
+
+.menu-toggle span:nth-child(3) {
+  width: 20px;
+}
+
+
+/* =====================================================
+   HAMBURGER HOVER
+===================================================== */
+
+.menu-toggle:hover span {
+  background:
+    var(--accent);
+}
+
+
+.menu-toggle:hover span:nth-child(1),
+.menu-toggle:hover span:nth-child(3) {
+  width:
+    18px;
+}
+
+
+.menu-toggle:hover span:nth-child(2) {
+  width:
+    18px;
+}
+
+
+/* =====================================================
+   HAMBURGER ACTIVE → X
+===================================================== */
+
+.menu-toggle.active span:nth-child(1) {
+  width: 18px;
+
+  transform:
+    translateY(7px)
+    rotate(45deg);
+}
+
+
+.menu-toggle.active span:nth-child(2) {
+  width: 18px;
+
+  align-self: center;
+
+  margin-right: 0;
+
+  opacity: 0;
+}
+
+
+.menu-toggle.active span:nth-child(3) {
+  width: 18px;
+
+  transform:
+    translateY(-7px)
+    rotate(-45deg);
+}
+
+
+/* =====================================================
+   DARK HAMBURGER
+===================================================== */
+
+:host-context(body.dark-mode)
+.menu-toggle span {
+  background:
+    #e5e7eb;
+}
+
+
+:host-context(body.dark-mode)
+.menu-toggle:hover span {
+  background:
+    #60a5fa;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1100px) {
+
+  .nav-inner {
+    width:
+      calc(100% - 60px);
+  }
+
+
+  .brand {
+    min-width:
+      135px;
+  }
+
+
+  .navigation {
+    gap:
+      24px;
+  }
+
+
+  .talk-button {
+    min-width:
+      112px;
+  }
+
+}
+
+
+/* =====================================================
+   SMALL TABLET
+===================================================== */
+
+@media (max-width: 900px) {
+
+  .navigation {
+    gap:
+      16px;
+  }
+
+
+  .nav-item {
+    font-size:
+      13px;
+  }
+
+
+  .brand-name {
+    font-size:
+      21px;
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 720px) {
+
+  .navbar {
+    height:
+      60px;
+  }
+
+
+  .nav-inner {
+    width:
+      calc(100% - 20px);
+
+    height:
+      100%;
+  }
+
+
+  /* =================================================
+     BRAND
+  ================================================== */
+
+  .brand {
+    min-width:
+      0;
+
+    height:
+      100%;
+
+    margin-right:
+      auto;
+  }
+
+
+  .brand-icon {
+    display:
+      none;
+  }
+
+
+  .brand-name {
+    font-size:
+      20px;
+
+    line-height:
+      1;
+  }
+
+
+  .brand-dot {
+    font-size:
+      22px;
+  }
+
+
+  /* =================================================
+     ACTION GROUP
+  ================================================== */
+
+  .nav-actions {
+    height:
+      36px;
+
+    margin-left:
+      auto;
+
+    display:
+      flex;
+
+    align-items:
+      center;
+
+    gap:
+      7px;
+  }
+
+
+  /* =================================================
+     RESUME
+  ================================================== */
+
+  .resume-button {
+    order:
+      1;
+
+    min-width:
+      0;
+
+    width:
+      auto;
+
+    height:
+      36px;
+
+    display:
+      flex;
+
+    align-items:
+      center;
+
+    justify-content:
+      center;
+
+    gap:
+      7px;
+
+    padding:
+      0;
+
+    margin:
+      0;
+
+    border:
+      none;
+
+    background:
+      transparent;
+  }
+
+
+  .resume-text {
+    height:
+      36px;
+
+    display:
+      flex;
+
+    align-items:
+      center;
+
+    justify-content:
+      center;
+
+    margin:
+      0;
+
+    padding:
+      0;
+
+    font-size:
+      13px;
+
+    font-weight:
+      600;
+
+    line-height:
+      1;
+  }
+
+
+  .resume-icon {
+    width:
+      25px;
+
+    height:
+      25px;
+
+    display:
+      flex;
+
+    align-items:
+      center;
+
+    justify-content:
+      center;
+
+    margin:
+      0;
+
+    padding:
+      0;
+
+    background:
+      transparent;
+
+    font-size:
+      16px;
+
+    line-height:
+      1;
+  }
+
+
+  /* =================================================
+     THEME
+  ================================================== */
+
+  .theme-toggle {
+    order:
+      2;
+
+    width:
+      36px;
+
+    height:
+      36px;
+
+    display:
+      flex;
+
+    align-items:
+      center;
+
+    justify-content:
+      center;
+
+    padding:
+      0;
+
+    margin:
+      0;
+
+    border:
+      none;
+
+    outline:
+      none;
+
+    background:
+      transparent;
+  }
+
+
+  .theme-icon {
+    width:
+      24px;
+
+    height:
+      24px;
+
+    display:
+      flex;
+
+    align-items:
+      center;
+
+    justify-content:
+      center;
+  }
+
+
+  .theme-icon svg {
+    width:
+      24px;
+
+    height:
+      24px;
+  }
+
+
+  /* =================================================
+     DESKTOP TALK HIDDEN
+  ================================================== */
+
+  .talk-button {
+    display:
+      none;
+  }
+
+
+  /* =================================================
+     HAMBURGER
+  ================================================== */
+
+  .menu-toggle {
+    order:
+      3;
+
+    width:
+      36px;
+
+    height:
+      36px;
+
+    display:
+      flex;
+
+    align-items:
+      center;
+
+    justify-content:
+      center;
+
+    flex-direction:
+      column;
+
+    gap:
+      5px;
+
+    padding:
+      0;
+
+    margin:
+      0;
+
+    border:
+      none;
+
+    outline:
+      none;
+
+    background:
+      transparent;
+  }
+
+
+  /* =================================================
+     MOBILE MENU
+     TWO COLUMN
+     LEFT BLUE ACCENT
+  ================================================== */
+
+  .navigation {
+
+    position:
+      absolute;
+
+    top:
+      calc(100% + 9px);
+
+    right:
+      0;
+
+    left:
+      auto;
+
+    width:
+      calc(100% - 8px);
+
+    max-width:
+      430px;
+
+    height:
+      auto;
+
+    margin:
+      0;
+
+    padding:
+      9px 9px 8px;
+
+    display:
+      grid;
+
+    grid-template-columns:
+      1fr 1fr;
+
+    grid-auto-rows:
+      47px;
+
+    column-gap:
+      4px;
+
+    row-gap:
+      2px;
+
+    background:
+      #ffffff;
+
+    border:
+      1px solid #e6eaf0;
+
+    border-left:
+      3px solid var(--accent);
+
+    border-radius:
+      10px;
+
+    overflow:
+      hidden;
+
+    box-shadow:
+      0 16px 38px rgba(24, 39, 75, 0.10);
+
+    transform:
+      translateY(-8px);
+
+    opacity:
+      0;
+
+    visibility:
+      hidden;
+
+    pointer-events:
+      none;
+
+    transition:
+      transform 0.16s ease-out,
+      opacity 0.12s ease-out,
+      visibility 0s linear 0.16s;
+  }
+
+
+  /* =================================================
+     MENU OPEN
+  ================================================== */
+
+  .navigation.mobile-open {
+
+    transform:
+      translateY(0);
+
+    opacity:
+      1;
+
+    visibility:
+      visible;
+
+    pointer-events:
+      auto;
+
+    transition:
+      transform 0.18s ease-out,
+      opacity 0.14s ease-out,
+      visibility 0s;
+  }
+
+
+  /* =================================================
+     MOBILE NAV ITEM
+  ================================================== */
+
+  .navigation .nav-item {
+
+    width:
+      100%;
+
+    height:
+      100%;
+
+    min-height:
+      0;
+
+    display:
+      flex;
+
+    align-items:
+      center;
+
+    gap:
+      11px;
+
+    padding:
+      0 11px;
+
+    margin:
+      0;
+
+    border-radius:
+      7px;
+
+    color:
+      #64748b;
+
+    font-size:
+      14px;
+
+    font-weight:
+      500;
+
+    line-height:
+      1;
+
+    text-decoration:
+      none;
+
+    white-space:
+      nowrap;
+
+    box-sizing:
+      border-box;
+
+    transition:
+      color 0.18s ease,
+      background-color 0.18s ease;
+  }
+
+
+  /* =================================================
+     MOBILE ICON
+  ================================================== */
+
+  .navigation .nav-item-icon {
+
+    width:
+      17px;
+
+    height:
+      17px;
+
+    display:
+      block;
+
+    flex:
+      0 0 17px;
+
+    color:
+      #64748b;
+
+    transition:
+      color 0.18s ease,
+      transform 0.18s ease;
+  }
+
+
+  /* =================================================
+     LIGHT HOVER
+  ================================================== */
+
+  .navigation .nav-item:hover {
+
+    color:
+      var(--accent);
+
+    background:
+      #eef5ff;
+  }
+
+
+  .navigation .nav-item:hover
+  .nav-item-icon {
+
+    color:
+      var(--accent);
+
+    transform:
+      translateX(1px);
+  }
+
+
+  /* =================================================
+     LIGHT ACTIVE
+  ================================================== */
+
+  .navigation .nav-item.active {
+
+    color:
+      #1f2937;
+
+    background:
+      #eaf2ff;
+  }
+
+
+  .navigation .nav-item.active
+  .nav-item-icon {
+
+    color:
+      var(--accent);
+  }
+
+
+  /* Remove desktop underline */
+
+  .navigation .nav-item::after {
+
+    display:
+      none;
+  }
+
+
+  /* =================================================
+     MOBILE LET'S TALK
+  ================================================== */
+
+  .navigation .mobile-talk {
+
+    grid-column:
+      1 / -1;
+
+    height:
+      100%;
+
+    margin-top:
+      5px;
+
+    padding:
+      0 12px;
+
+    border-top:
+      1px solid #e5e9ee;
+
+    border-radius:
+      0;
+
+    color:
+      var(--accent);
+  }
+
+
+  .navigation .mobile-talk
+  .nav-item-icon {
+
+    color:
+      var(--accent);
+  }
+
+
+  .navigation .mobile-talk:hover {
+
+    color:
+      var(--accent);
+
+    background:
+      transparent;
+  }
+
+
+  .navigation .mobile-talk:hover
+  .nav-item-icon {
+
+    color:
+      var(--accent);
+
+    transform:
+      translateX(1px);
+  }
+
+
+  /* =================================================
+     DARK MOBILE MENU
+  ================================================== */
+
+  :host-context(body.dark-mode)
+  .navigation {
+
+    background:
+      #0f131a;
+
+    border-color:
+      rgba(255, 255, 255, 0.08);
+
+    border-left-color:
+      var(--accent);
+
+    box-shadow:
+      0 18px 38px rgba(0, 0, 0, 0.35);
+  }
+
+
+  :host-context(body.dark-mode)
+  .navigation .nav-item {
+
+    color:
+      #94a3b8;
+  }
+
+
+  :host-context(body.dark-mode)
+  .navigation .nav-item-icon {
+
+    color:
+      #94a3b8;
+  }
+
+
+  /* =================================================
+     DARK MODE HOVER
+     TEXT + ICON WHITE
+  ================================================== */
+
+  :host-context(body.dark-mode)
+  .navigation .nav-item:hover {
+
+    color:
+      #ffffff;
+
+    background:
+      rgba(67, 140, 255, 0.08);
+  }
+
+
+  :host-context(body.dark-mode)
+  .navigation .nav-item:hover
+  .nav-item-icon {
+
+    color:
+      #ffffff;
+
+    transform:
+      translateX(1px);
+  }
+
+
+  /* =================================================
+     DARK ACTIVE
+  ================================================== */
+
+  :host-context(body.dark-mode)
+  .navigation .nav-item.active {
+
+    color:
+      #f1f5f9;
+
+    background:
+      rgba(67, 140, 255, 0.10);
+  }
+
+
+  :host-context(body.dark-mode)
+  .navigation .nav-item.active
+  .nav-item-icon {
+
+    color:
+      #60a5fa;
+  }
+
+
+  /* =================================================
+     DARK LET'S TALK
+  ================================================== */
+
+  :host-context(body.dark-mode)
+  .navigation .mobile-talk {
+
+    color:
+      #60a5fa;
+
+    border-top-color:
+      rgba(255, 255, 255, 0.08);
+  }
+
+
+  :host-context(body.dark-mode)
+  .navigation .mobile-talk
+  .nav-item-icon {
+
+    color:
+      #60a5fa;
+  }
+
+
+  /* =================================================
+     DARK LET'S TALK HOVER
+  ================================================== */
+
+  :host-context(body.dark-mode)
+  .navigation .mobile-talk:hover {
+
+    color:
+      #ffffff;
+
+    background:
+      transparent;
+  }
+
+
+  :host-context(body.dark-mode)
+  .navigation .mobile-talk:hover
+  .nav-item-icon {
+
+    color:
+      #ffffff;
+
+    transform:
+      translateX(1px);
+  }
+
+
+  /* =================================================
+     MOBILE HAMBURGER HOVER
+  ================================================== */
+
+  .menu-toggle:hover span {
+
+    background:
+      var(--accent);
+  }
+
+
+  .menu-toggle:hover span:nth-child(1),
+  .menu-toggle:hover span:nth-child(3) {
+
+    width:
+      18px;
+  }
+
+
+  .menu-toggle:hover span:nth-child(2) {
+
+    width:
+      18px;
+  }
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 560px) {
+
+  .nav-inner {
+    width:
+      calc(100% - 14px);
+  }
+
+
+  .nav-actions {
+    gap:
+      5px;
+  }
+
+
+  .resume-button {
+    height:
+      36px;
+
+    gap:
+      5px;
+  }
+
+
+  .resume-text {
+    font-size:
+      13px;
+  }
+
+
+  .resume-icon {
+    width:
+      24px;
+
+    height:
+      24px;
+
+    font-size:
+      15px;
+  }
+
+
+  .theme-toggle {
+    width:
+      36px;
+
+    height:
+      36px;
+  }
+
+
+  .theme-icon {
+    width:
+      24px;
+
+    height:
+      24px;
+  }
+
+
+  .theme-icon svg {
+    width:
+      24px;
+
+    height:
+      24px;
+  }
+
+
+  .menu-toggle {
+    width:
+      36px;
+
+    height:
+      36px;
+  }
+
+
+  .navigation {
+
+    width:
+      calc(100% - 6px);
+
+    padding:
+      8px 8px 7px;
+
+    grid-auto-rows:
+      45px;
+
+    column-gap:
+      3px;
+
+    row-gap:
+      2px;
+
+    border-radius:
+      10px;
+  }
+
+
+  .navigation .nav-item {
+
+    padding:
+      0 10px;
+
+    gap:
+      10px;
+
+    font-size:
+      13px;
+  }
+
+
+  .navigation .nav-item-icon {
+
+    width:
+      17px;
+
+    height:
+      17px;
+  }
+
+}
+
+
+/* =====================================================
+   VERY SMALL MOBILE
+===================================================== */
+
+@media (max-width: 400px) {
+
+  .brand-name {
+    font-size:
+      18px;
+  }
+
+
+  .resume-text {
+    font-size:
+      12px;
+  }
+
+
+  .resume-icon {
+    width:
+      23px;
+
+    height:
+      23px;
+
+    font-size:
+      14px;
+  }
+
+
+  .theme-toggle {
+    width:
+      36px;
+
+    height:
+      36px;
+  }
+
+
+  .theme-icon {
+    width:
+      24px;
+
+    height:
+      24px;
+  }
+
+
+  .theme-icon svg {
+    width:
+      24px;
+
+    height:
+      24px;
+  }
+
+
+  .menu-toggle {
+    width:
+      36px;
+
+    height:
+      36px;
+  }
+
+
+  .navigation {
+    width:
+      calc(100% - 4px);
+
+    padding:
+      7px;
+
+    grid-auto-rows:
+      43px;
+
+    border-radius:
+      10px;
+  }
+
+
+  .navigation .nav-item {
+
+    padding:
+      0 8px;
+
+    gap:
+      9px;
+
+    font-size:
+      12px;
+  }
+
+
+  .navigation .nav-item-icon {
+
+    width:
+      16px;
+
+    height:
+      16px;
+  }
+
+}

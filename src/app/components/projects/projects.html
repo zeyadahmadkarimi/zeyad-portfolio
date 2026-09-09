@@ -1,0 +1,39 @@
+<section class="projects" id="projects">
+
+  <div class="section-title">
+    <p>My Work</p>
+    <h2>Projects</h2>
+  </div>
+
+  <div class="projects-list">
+
+    @for (project of projects; track project.name) {
+
+      <article class="project-card">
+
+        <h3>{{ project.name }}</h3>
+
+        <p class="project-description">
+          {{ project.description }}
+        </p>
+
+        <div class="technologies">
+
+          @for (technology of project.technologies; track technology) {
+            <span>{{ technology }}</span>
+          }
+
+        </div>
+
+        <div class="project-links">
+          <a [href]="project.github" target="_blank">GitHub</a>
+          <a [href]="project.demo" target="_blank">Live Demo</a>
+        </div>
+
+      </article>
+
+    }
+
+  </div>
+
+</section>

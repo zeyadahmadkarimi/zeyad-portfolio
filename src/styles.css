@@ -1,1 +1,107 @@
-/* You can add global styles to this file, and also import other style files */
+/* =====================================================
+   GLOBAL RESET
+===================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/* =====================================================
+   HTML
+===================================================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+/* =====================================================
+   BODY — DEFAULT LIGHT MODE
+===================================================== */
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+
+  background: #f7f9fc;
+
+  color: #151922;
+
+  padding-top: 82px;
+
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease;
+}
+
+
+/* =====================================================
+   GLOBAL LINKS
+===================================================== */
+
+a {
+  color: inherit;
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+button,
+a {
+  font-family: inherit;
+}
+
+
+/* =====================================================
+   THEME VARIABLES
+===================================================== */
+
+body {
+  --bg-main: #f7f9fc;
+  --bg-secondary: #ffffff;
+
+  --text-main: #151922;
+  --text-secondary: #667085;
+
+  --border: rgba(20, 30, 50, 0.09);
+
+  --accent: #438cff;
+}
+
+
+/* =====================================================
+   DARK MODE
+===================================================== */
+
+body.dark-mode {
+  --bg-main: #090c11;
+  --bg-secondary: #0f131a;
+
+  --text-main: #f1f5f9;
+  --text-secondary: #8994a5;
+
+  --border: rgba(255, 255, 255, 0.08);
+
+  --accent: #438cff;
+
+  background: #090c11;
+
+  color: #f1f5f9;
+}
+
+
+/* =====================================================
+   MOBILE NAVBAR OFFSET
+===================================================== */
+
+@media (max-width: 720px) {
+
+  body {
+    padding-top: 72px;
+  }
+
+}

@@ -1,0 +1,1119 @@
+/* =====================================================
+   SKILLS — REARRANGED + FLOATING MOTION
+   The visual system stays the same, but nodes are
+   redistributed for a cleaner composition.
+   ===================================================== */
+
+.skills {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+
+  padding: 78px 0 58px;
+  scroll-margin-top: 82px;
+
+  background: #ffffff;
+  color: #151922;
+}
+
+.skills-shell {
+  width: min(1280px, calc(100% - 100px));
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.skills-topline {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 18px;
+
+  color: #7e8a99;
+  font-family: "Courier New", monospace;
+  font-size: 8px;
+  letter-spacing: 1.7px;
+}
+
+.section-number {
+  color: #438cff;
+  font-weight: 700;
+}
+
+.topline-rule {
+  width: 38px;
+  height: 1px;
+  background: #cfd9e4;
+}
+
+.skills-hero-row {
+  display: grid;
+  grid-template-columns: 1fr 330px;
+  gap: 55px;
+  align-items: end;
+
+  padding-bottom: 24px;
+  border-bottom: 1px solid #dfe6ed;
+}
+
+.skills-heading p {
+  margin: 0 0 8px;
+
+  color: #7e8b9b;
+  font-family: "Courier New", monospace;
+  font-size: 8px;
+  letter-spacing: 1.7px;
+}
+
+.skills-heading h2 {
+  margin: 0;
+
+  color: #171d26;
+  font-size: clamp(46px, 4.7vw, 64px);
+  line-height: .9;
+  letter-spacing: -3.6px;
+  font-weight: 800;
+}
+
+.skills-heading h2 span {
+  color: #438cff;
+}
+
+.skills-summary p {
+  margin: 0;
+
+  color: #7b8797;
+  font-size: 12px;
+  line-height: 1.72;
+}
+
+.summary-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+
+  color: #98a3af;
+  font-family: "Courier New", monospace;
+  font-size: 7px;
+  letter-spacing: 1px;
+}
+
+.summary-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #2acda0;
+  box-shadow: 0 0 9px rgba(42,205,160,.45);
+}
+
+.skills-stage {
+  padding: 25px 0 24px;
+}
+
+.stage-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 7px;
+
+  color: #7d8998;
+  font-family: "Courier New", monospace;
+  font-size: 7px;
+  letter-spacing: 1.6px;
+}
+
+.stage-header span:last-child {
+  color: #a0abb7;
+}
+
+.skill-canvas {
+  position: relative;
+  height: 320px;
+  overflow: hidden;
+
+  border-top: 1px solid #dfe6ed;
+  border-bottom: 1px solid #dfe6ed;
+
+  background:
+    radial-gradient(circle at 50% 50%, rgba(67,140,255,.075), transparent 25%),
+    linear-gradient(rgba(67,140,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(67,140,255,.035) 1px, transparent 1px),
+    #fbfcfd;
+
+  background-size: auto, 32px 32px, 32px 32px;
+}
+
+.canvas-axis {
+  position: absolute;
+  background: rgba(67,140,255,.08);
+  pointer-events: none;
+}
+
+.axis-x {
+  width: 100%;
+  height: 1px;
+  left: 0;
+  top: 50%;
+}
+
+.axis-y {
+  width: 1px;
+  height: 100%;
+  top: 0;
+  left: 50%;
+}
+
+.canvas-sweep {
+  position: absolute;
+  z-index: 1;
+  width: 1px;
+  height: 100%;
+  top: 0;
+
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(67,140,255,.14),
+    transparent
+  );
+
+  opacity: 0;
+  transform: translateX(-120px);
+}
+
+.sweep-one { left: 32%; }
+.sweep-two { left: 68%; }
+
+/* Center */
+
+.stack-center {
+  position: absolute;
+  z-index: 5;
+
+  left: 50%;
+  top: 50%;
+
+  width: 114px;
+  height: 114px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  transform: translate(-50%,-50%);
+
+  border: 1px solid rgba(67,140,255,.35);
+  background: rgba(255,255,255,.95);
+
+  box-shadow:
+    0 0 0 10px rgba(67,140,255,.024),
+    0 0 48px rgba(67,140,255,.09);
+}
+
+.stack-center::before {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  border: 1px solid rgba(67,140,255,.12);
+}
+
+.center-tag {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 8px;
+
+  color: #7d8999;
+  font-family: "Courier New", monospace;
+  font-size: 6px;
+  letter-spacing: 1.3px;
+}
+
+.stack-center strong {
+  position: relative;
+  z-index: 2;
+
+  color: #28313e;
+  font-size: 18px;
+  line-height: .92;
+  letter-spacing: -1px;
+  text-align: center;
+}
+
+.stack-center strong i {
+  color: #438cff;
+  font-style: normal;
+}
+
+.stack-center small {
+  position: relative;
+  z-index: 2;
+
+  margin-top: 9px;
+
+  color: #99a4b0;
+  font-family: "Courier New", monospace;
+  font-size: 5px;
+  letter-spacing: 1px;
+}
+
+/* Nodes */
+
+.skill-node {
+  position: absolute;
+  z-index: 6;
+
+  width: 108px;
+  min-height: 70px;
+  padding: 9px 10px;
+
+  border: 1px solid #d4dee8;
+  background: rgba(255,255,255,.9);
+
+  box-shadow: 0 10px 20px rgba(25,43,70,.05);
+
+  opacity: 0;
+  transform: translate3d(0,0,0);
+
+  transition:
+    border-color .3s ease,
+    box-shadow .3s ease,
+    background .3s ease;
+}
+
+.skill-node:hover {
+  border-color: #a9c1db;
+  background: #ffffff;
+
+  box-shadow:
+    0 16px 28px rgba(25,43,70,.09),
+    0 0 0 4px rgba(67,140,255,.03);
+}
+
+.skill-node::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  width: 21px;
+  height: 2px;
+  background: #438cff;
+}
+
+.node-num {
+  display: block;
+  margin-bottom: 5px;
+
+  color: #a3aebb;
+  font-family: "Courier New", monospace;
+  font-size: 6px;
+}
+
+.skill-node b {
+  display: block;
+
+  color: #2d3745;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.skill-node small {
+  display: block;
+  margin-top: 3px;
+
+  color: #929dac;
+  font-size: 7px;
+}
+
+.skill-node > i {
+  position: absolute;
+  top: 10px;
+  right: 9px;
+
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+
+  background: #438cff;
+  box-shadow: 0 0 8px rgba(67,140,255,.4);
+}
+
+.active-node {
+  border-color: #bfd2e7;
+}
+
+.active-node::after {
+  width: 31px;
+  background: linear-gradient(90deg,#438cff,#7061ff);
+}
+
+.active-node > i {
+  background: #2acda0;
+  box-shadow: 0 0 9px rgba(42,205,160,.48);
+}
+
+/* Rearranged positions */
+
+.node-html {
+  left: 12%;
+  top: 20%;
+}
+
+.node-js {
+  left: 31%;
+  top: 7%;
+}
+
+.node-ts {
+  right: 31%;
+  top: 7%;
+}
+
+.node-css {
+  right: 12%;
+  top: 20%;
+}
+
+.node-angular {
+  left: 19%;
+  bottom: 12%;
+}
+
+.node-git {
+  left: 50%;
+  bottom: 8%;
+  transform: translateX(-50%);
+}
+
+.node-github {
+  right: 19%;
+  bottom: 12%;
+}
+
+/* Connection paths */
+
+.canvas-path {
+  position: absolute;
+  z-index: 2;
+
+  height: 1px;
+  transform-origin: left center;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(67,140,255,.42),
+    transparent
+  );
+
+  opacity: 0;
+}
+
+.path-html {
+  width: 190px;
+  left: 18%;
+  top: 31%;
+  transform: rotate(22deg);
+}
+
+.path-js {
+  width: 80px;
+  left: 37%;
+  top: 19%;
+  transform: rotate(54deg);
+}
+
+.path-ts {
+  width: 82px;
+  left: 54%;
+  top: 19%;
+  transform: rotate(126deg);
+}
+
+.path-css {
+  width: 190px;
+  left: 58%;
+  top: 31%;
+  transform: rotate(158deg);
+}
+
+.path-angular {
+  width: 178px;
+  left: 27%;
+  bottom: 26%;
+  transform: rotate(-25deg);
+}
+
+.path-git {
+  width: 62px;
+  left: 50%;
+  bottom: 28%;
+  transform: rotate(90deg);
+}
+
+.path-github {
+  width: 178px;
+  left: 53%;
+  bottom: 26%;
+  transform: rotate(205deg);
+}
+
+/* =====================================================
+   DETAILS
+   ===================================================== */
+
+.skills-details {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  border-bottom: 1px solid #dfe6ed;
+}
+
+.detail-column {
+  display: flex;
+  gap: 13px;
+
+  min-height: 82px;
+  padding: 13px 18px;
+
+  border-left: 1px solid #dfe6ed;
+}
+
+.detail-column:first-child {
+  border-left: 0;
+}
+
+.detail-index {
+  padding-top: 2px;
+
+  color: #438cff;
+  font-family: "Courier New", monospace;
+  font-size: 7px;
+}
+
+.detail-column small {
+  display: block;
+  margin-bottom: 5px;
+
+  color: #929daa;
+  font-family: "Courier New", monospace;
+  font-size: 6px;
+  letter-spacing: 1.3px;
+}
+
+.detail-column h3 {
+  margin: 0 0 5px;
+
+  color: #2e3846;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.detail-column p {
+  margin: 0;
+
+  color: #8793a2;
+  font-size: 9px;
+}
+
+.current-detail {
+  background: linear-gradient(
+    90deg,
+    rgba(67,140,255,.04),
+    transparent
+  );
+}
+
+/* Footer */
+
+.skills-footer {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  padding-top: 12px;
+
+  color: #98a3b0;
+  font-family: "Courier New", monospace;
+  font-size: 6px;
+  letter-spacing: 1.3px;
+}
+
+.footer-rule {
+  width: 30px;
+  height: 1px;
+  background: #438cff;
+}
+
+.skills-footer strong {
+  margin-left: auto;
+
+  color: #438cff;
+  font-weight: 400;
+}
+
+/* =====================================================
+   REVEAL + FLOAT ANIMATION
+   Triggered whenever the section enters the viewport.
+   This also works when opened from the navbar because
+   the section becomes visible and IntersectionObserver
+   re-adds the class.
+   ===================================================== */
+
+.skills-visible .stack-center {
+  animation:
+    skillsCenterIn .75s .12s cubic-bezier(.22,1,.36,1) both,
+    centerFloat 4.5s 1s ease-in-out infinite;
+}
+
+.skills-visible .canvas-path {
+  animation: pathAppear .65s .45s ease forwards;
+}
+
+.skills-visible .canvas-sweep {
+  animation: sweepAcross 2.2s .7s ease-out both;
+}
+
+.skills-visible .node-html {
+  animation:
+    nodeIn .7s .18s cubic-bezier(.22,1,.36,1) both,
+    floatA 5.3s 1s ease-in-out infinite;
+}
+
+.skills-visible .node-js {
+  animation:
+    nodeIn .7s .28s cubic-bezier(.22,1,.36,1) both,
+    floatB 4.9s 1.1s ease-in-out infinite;
+}
+
+.skills-visible .node-ts {
+  animation:
+    nodeIn .7s .38s cubic-bezier(.22,1,.36,1) both,
+    floatC 5.5s 1.15s ease-in-out infinite;
+}
+
+.skills-visible .node-css {
+  animation:
+    nodeIn .7s .48s cubic-bezier(.22,1,.36,1) both,
+    floatB 5.1s 1.2s ease-in-out infinite;
+}
+
+.skills-visible .node-angular {
+  animation:
+    nodeIn .7s .58s cubic-bezier(.22,1,.36,1) both,
+    floatC 5.7s 1.25s ease-in-out infinite;
+}
+
+.skills-visible .node-git {
+  animation:
+    nodeIn .7s .68s cubic-bezier(.22,1,.36,1) both,
+    floatA 5s 1.3s ease-in-out infinite;
+}
+
+.skills-visible .node-github {
+  animation:
+    nodeIn .7s .78s cubic-bezier(.22,1,.36,1) both,
+    floatB 5.4s 1.35s ease-in-out infinite;
+}
+
+@keyframes nodeIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0,18px,0) scale(.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0,0,0) scale(1);
+  }
+}
+
+@keyframes skillsCenterIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%,-50%) scale(.86);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%,-50%) scale(1);
+  }
+}
+
+@keyframes floatA {
+  0%,100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 -7px;
+  }
+}
+
+@keyframes floatB {
+  0%,100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 6px;
+  }
+}
+
+@keyframes floatC {
+  0%,100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 -5px;
+  }
+}
+
+@keyframes centerFloat {
+  0%,100% {
+    margin-top: 0;
+  }
+
+  50% {
+    margin-top: -4px;
+  }
+}
+
+@keyframes pathAppear {
+  from {
+    opacity: 0;
+    background-size: 0 100%;
+  }
+
+  to {
+    opacity: 1;
+    background-size: 100% 100%;
+  }
+}
+
+@keyframes sweepAcross {
+  from {
+    opacity: 0;
+    transform: translateX(-120px);
+  }
+
+  20% {
+    opacity: .8;
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(120px);
+  }
+}
+
+/* =====================================================
+   DARK MODE
+   ===================================================== */
+
+:host-context(body.dark-mode) .skills {
+  background: #090c11;
+  color: #f1f5f9;
+}
+
+:host-context(body.dark-mode) .topline-rule {
+  background: #294057;
+}
+
+:host-context(body.dark-mode) .skills-hero-row,
+:host-context(body.dark-mode) .skills-footer,
+:host-context(body.dark-mode) .skills-details {
+  border-color: #202d3b;
+}
+
+:host-context(body.dark-mode) .skills-heading p,
+:host-context(body.dark-mode) .skills-summary p,
+:host-context(body.dark-mode) .summary-line {
+  color: #64768b;
+}
+
+:host-context(body.dark-mode) .skills-heading h2 {
+  color: #f1f5f9;
+}
+
+:host-context(body.dark-mode) .stage-header {
+  color: #60738a;
+}
+
+:host-context(body.dark-mode) .stage-header span:last-child {
+  color: #4e6177;
+}
+
+:host-context(body.dark-mode) .skill-canvas {
+  border-color: #202d3b;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(67,140,255,.08), transparent 25%),
+    linear-gradient(rgba(67,140,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(67,140,255,.035) 1px, transparent 1px),
+    #0d141d;
+  background-size: auto,32px 32px,32px 32px;
+}
+
+:host-context(body.dark-mode) .canvas-axis {
+  background: rgba(67,140,255,.08);
+}
+
+:host-context(body.dark-mode) .stack-center {
+  border-color: rgba(67,140,255,.32);
+  background: rgba(11,18,27,.94);
+}
+
+:host-context(body.dark-mode) .stack-center::before {
+  border-color: rgba(67,140,255,.11);
+}
+
+:host-context(body.dark-mode) .center-tag {
+  color: #60738a;
+}
+
+:host-context(body.dark-mode) .stack-center strong {
+  color: #e2eaf2;
+}
+
+:host-context(body.dark-mode) .stack-center small {
+  color: #53677d;
+}
+
+:host-context(body.dark-mode) .skill-node {
+  border-color: #293d53;
+  background: rgba(13,20,29,.92);
+  box-shadow: 0 11px 22px rgba(0,0,0,.22);
+}
+
+:host-context(body.dark-mode) .skill-node:hover {
+  border-color: #3a5674;
+  background: #111a24;
+  box-shadow: 0 18px 30px rgba(0,0,0,.25);
+}
+
+:host-context(body.dark-mode) .skill-node b {
+  color: #e0e8f0;
+}
+
+:host-context(body.dark-mode) .skill-node small {
+  color: #6f8197;
+}
+
+:host-context(body.dark-mode) .skill-node > i {
+  background: #438cff;
+}
+
+:host-context(body.dark-mode) .active-node {
+  border-color: #365473;
+  background: linear-gradient(145deg,#101c28,#0d151e);
+}
+
+:host-context(body.dark-mode) .active-node > i {
+  background: #2acda0;
+}
+
+:host-context(body.dark-mode) .detail-column {
+  border-left-color: #202d3b;
+}
+
+:host-context(body.dark-mode) .detail-column small {
+  color: #60738a;
+}
+
+:host-context(body.dark-mode) .detail-column h3 {
+  color: #dce5ee;
+}
+
+:host-context(body.dark-mode) .detail-column p {
+  color: #718197;
+}
+
+:host-context(body.dark-mode) .current-detail {
+  background: linear-gradient(90deg,rgba(67,140,255,.05),transparent);
+}
+
+:host-context(body.dark-mode) .skills-footer {
+  color: #52657b;
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 1100px) {
+  .skills-shell {
+    width: min(92%, 900px);
+  }
+
+  .skills-hero-row {
+    grid-template-columns: 1fr 280px;
+  }
+
+  .skill-canvas {
+    height: 360px;
+  }
+}
+
+@media (max-width: 850px) {
+  .skills-hero-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .skills-summary {
+    max-width: 560px;
+  }
+
+  .skill-canvas {
+    height: 390px;
+  }
+
+  .node-html {
+    left: 8%;
+  }
+
+  .node-css {
+    right: 8%;
+  }
+
+  .node-angular {
+    left: 12%;
+  }
+
+  .node-github {
+    right: 12%;
+  }
+}
+
+@media (max-width: 680px) {
+  .skills {
+    padding: 72px 0 58px;
+  }
+
+  .skills-shell {
+    width: calc(100% - 34px);
+  }
+
+  .skills-heading h2 {
+    font-size: clamp(44px, 13vw, 59px);
+    letter-spacing: -2.8px;
+  }
+
+  .skill-canvas {
+    height: 470px;
+  }
+
+  .stack-center {
+    width: 105px;
+    height: 105px;
+  }
+
+  .stack-center strong {
+    font-size: 16px;
+  }
+
+  .skill-node {
+    width: 92px;
+    min-height: 64px;
+    padding: 8px 9px;
+  }
+
+  .skill-node b {
+    font-size: 10px;
+  }
+
+  .skill-node small {
+    font-size: 6px;
+  }
+
+  .node-html { top: 7%; left: 2%; }
+  .node-js { top: 22%; left: 24%; }
+  .node-ts { top: 22%; right: 24%; }
+  .node-css { top: 7%; right: 2%; }
+
+  .node-angular { bottom: 16%; left: 4%; }
+  .node-git { bottom: 4%; }
+  .node-github { bottom: 16%; right: 4%; }
+
+  .path-html,
+  .path-css,
+  .path-angular,
+  .path-github {
+    opacity: .65;
+  }
+
+  .skills-details {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-column,
+  .detail-column:first-child {
+    border-left: 0;
+    border-bottom: 1px solid #dfe6ed;
+  }
+
+  .detail-column:last-child {
+    border-bottom: 0;
+  }
+
+  :host-context(body.dark-mode) .detail-column,
+  :host-context(body.dark-mode) .detail-column:first-child {
+    border-bottom-color: #202d3b;
+  }
+
+  .skills-footer {
+    flex-wrap: wrap;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 430px) {
+  .skills {
+    padding: 63px 0 50px;
+  }
+
+  .skills-shell {
+    width: calc(100% - 28px);
+  }
+
+  .skills-heading h2 {
+    font-size: 42px;
+  }
+
+  .skills-summary p {
+    font-size: 11px;
+  }
+
+  .skill-canvas {
+    height: 440px;
+  }
+
+  .skill-node {
+    width: 78px;
+    min-height: 58px;
+    padding: 7px;
+  }
+
+  .skill-node b {
+    font-size: 9px;
+  }
+
+  .skill-node small,
+  .node-num {
+    font-size: 5px;
+  }
+
+  .stack-center {
+    width: 94px;
+    height: 94px;
+  }
+
+  .stack-center strong {
+    font-size: 14px;
+  }
+
+  .node-js { left: 20%; }
+  .node-ts { right: 20%; }
+}
+
+/* =====================================================
+   REDUCED MOTION
+   ===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .skills-visible .stack-center,
+  .skills-visible .skill-node,
+  .skills-visible .canvas-path,
+  .skills-visible .canvas-sweep {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* =====================================================
+   LIGHT/DARK VISIBILITY FIX
+   Nodes and connection lines are always visible.
+   IntersectionObserver only controls the floating motion.
+   ===================================================== */
+
+.skill-node {
+  opacity: 1 !important;
+  transform-origin: center;
+  translate: 0 0;
+}
+
+.canvas-path {
+  opacity: .52 !important;
+}
+
+.skills-visible .node-html {
+  animation: floatA 5.3s ease-in-out infinite;
+}
+
+.skills-visible .node-js {
+  animation: floatB 4.9s .15s ease-in-out infinite;
+}
+
+.skills-visible .node-ts {
+  animation: floatC 5.5s .25s ease-in-out infinite;
+}
+
+.skills-visible .node-css {
+  animation: floatB 5.1s .35s ease-in-out infinite;
+}
+
+.skills-visible .node-angular {
+  animation: floatC 5.7s .45s ease-in-out infinite;
+}
+
+.skills-visible .node-git {
+  animation: floatA 5s .55s ease-in-out infinite;
+}
+
+.skills-visible .node-github {
+  animation: floatB 5.4s .65s ease-in-out infinite;
+}
+
+.skills-visible .canvas-path {
+  animation: pathGlow 3.2s ease-in-out infinite;
+}
+
+@keyframes floatA {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -7px; }
+}
+
+@keyframes floatB {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 6px; }
+}
+
+@keyframes floatC {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -5px; }
+}
+
+@keyframes pathGlow {
+  0%, 100% { opacity: .38; }
+  50% { opacity: .72; }
+}
+
+/* Light mode */
+.skill-node b { color: #2d3745; }
+.skill-node small { color: #929dac; }
+.skill-node .node-num { color: #a3aebb; }
+.skill-node > i { background: #438cff; }
+
+.active-node > i {
+  background: #2acda0;
+}
+
+/* Dark mode */
+:host-context(body.dark-mode) .skill-node b { color: #e0e8f0; }
+:host-context(body.dark-mode) .skill-node small { color: #6f8197; }
+:host-context(body.dark-mode) .skill-node .node-num { color: #52657b; }
+:host-context(body.dark-mode) .canvas-path { opacity: .52 !important; }
