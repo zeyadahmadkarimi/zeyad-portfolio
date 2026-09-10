@@ -9,8 +9,8 @@
     <h2>Featured Projects</h2>
 
     <p>
-      Projects I've built to apply my skills in frontend development,
-      Angular and modern web technologies.
+      A selection of projects I have built while learning and applying
+      modern web development technologies.
     </p>
 
   </div>
@@ -21,14 +21,16 @@
 
       <article class="project-card">
 
-        <div class="project-top">
+        <div class="project-image-wrapper">
+
+          <img
+            [src]="project.image"
+            [alt]="project.name + ' project preview'"
+            class="project-image"
+          >
 
           <span class="project-number">
             {{ project.number }}
-          </span>
-
-          <span class="project-type">
-            {{ project.type }}
           </span>
 
         </div>
@@ -46,36 +48,47 @@
           <div class="technologies">
 
             @for (technology of project.technologies; track technology) {
-              <span>
-                {{ technology }}
-              </span>
+              <span>{{ technology }}</span>
             }
 
           </div>
+
+          <ul class="project-features">
+
+            @for (feature of project.features; track feature) {
+              <li>
+                <span class="feature-check">✓</span>
+                <span>{{ feature }}</span>
+              </li>
+            }
+
+          </ul>
 
         </div>
 
         <div class="project-footer">
 
-          <a
-            [href]="project.github"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="project-link github-link"
-            [class.disabled-link]="project.github === '#'"
-          >
-            <span>GitHub</span>
-            <span class="link-arrow">↗</span>
-          </a>
+          @if (project.github !== '#') {
+            <a
+              [href]="project.github"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="github-button"
+            >
+              <span class="github-icon">◉</span>
+              <span>GitHub</span>
+              <span>↗</span>
+            </a>
+          }
 
           <a
             [href]="project.demo"
             target="_blank"
             rel="noopener noreferrer"
-            class="project-link live-link"
+            class="demo-button"
           >
+            <span>↗</span>
             <span>Live Demo</span>
-            <span class="link-arrow">↗</span>
           </a>
 
         </div>
