@@ -21,44 +21,30 @@
 
       <article class="project-card">
 
-        <!-- Project preview with automatic image rotation. -->
-        <div class="project-preview">
+        <!-- PROJECT IMAGE SLIDER -->
+        <div class="project-image-wrapper">
 
           <img
-            [src]="getActiveImage(i)"
-            [alt]="project.name + ' project preview'"
             class="project-image"
+            [src]="project.images[currentImageIndexes[i]]"
+            [alt]="project.name + ' project preview'"
           />
 
-          <div class="preview-overlay">
-            <span>{{ project.number }}</span>
-          </div>
-
-          <div class="image-indicators">
-
-            @for (
-              image of project.images;
-              track image;
-              let imageIndex = $index
-            ) {
-
-              <span
-                class="image-dot"
-                [class.active]="imageIndex === activeImageIndexes[i]"
-              ></span>
-
-            }
-
+          <!-- Image counter -->
+          <div class="image-counter">
+            {{ currentImageIndexes[i] + 1 }} / {{ project.images.length }}
           </div>
 
         </div>
 
+
+        <!-- PROJECT CONTENT -->
         <div class="project-content">
 
           <div class="project-heading">
 
             <span class="project-number">
-              {{ project.number }}
+              {{ (i + 1).toString().padStart(2, '0') }}
             </span>
 
             <h3>
@@ -67,10 +53,13 @@
 
           </div>
 
+
           <p class="project-description">
             {{ project.description }}
           </p>
 
+
+          <!-- TECHNOLOGIES -->
           <div class="technologies">
 
             @for (
@@ -86,46 +75,83 @@
 
           </div>
 
-          <div class="project-features">
 
-            @for (
-              feature of project.features;
-              track feature
-            ) {
+          <!-- FEATURES -->
+          @if (i === 0) {
 
-              <div class="feature">
-                <span class="feature-check">✓</span>
-                <span>{{ feature }}</span>
-              </div>
+            <ul class="project-features">
+
+              <li>Product search, filtering and categories</li>
+              <li>Cart, wishlist, Save for Later & coupons</li>
+              <li>Order/account & warehouse management</li>
+              <li>Responsive design (desktop & mobile)</li>
+              <li>Deployed on Vercel</li>
+
+            </ul>
+
+          }
+
+
+          @if (i === 1) {
+
+            <ul class="project-features">
+
+              <li>Create, view, edit and delete tasks</li>
+              <li>Task status, due date & date-picker</li>
+              <li>Reactive Forms with custom validation</li>
+              <li>Angular routing & query parameters</li>
+              <li>ViewChild & AfterViewInit implementation</li>
+              <li>Responsive interface</li>
+
+            </ul>
+
+          }
+
+
+          @if (i === 2) {
+
+            <ul class="project-features">
+
+              <li>Showcases skills, projects and professional information</li>
+              <li>Clean and modern UI/UX</li>
+              <li>Responsive design for desktop and mobile</li>
+              <li>Angular component-based architecture</li>
+              <li>Deployed on Vercel</li>
+
+            </ul>
+
+          }
+
+
+          <!-- LINKS -->
+          <div class="project-links">
+
+            @if (project.github !== '#') {
+
+              <a
+                [href]="project.github"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="github-link"
+              >
+                <span>GitHub</span>
+                <span>↗</span>
+              </a>
 
             }
 
+            <a
+              [href]="project.demo"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="demo-link"
+              [class.disabled-link]="project.demo === '#'"
+            >
+              <span>Live Demo</span>
+              <span>↗</span>
+            </a>
+
           </div>
-
-        </div>
-
-        <div class="project-footer">
-
-          <a
-            [href]="project.github"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="github-link"
-          >
-            <span class="github-icon">◉</span>
-            <span>GitHub</span>
-            <span class="link-arrow">↗</span>
-          </a>
-
-          <a
-            [href]="project.demo"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="demo-link"
-          >
-            <span>Live Demo</span>
-            <span class="link-arrow">↗</span>
-          </a>
 
         </div>
 
