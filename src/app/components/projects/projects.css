@@ -8,9 +8,12 @@
 .projects > .section-title,
 .projects > .projects-list {
   width: min(1280px, calc(100% - 100px));
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+
+/* Section heading */
 .section-title {
   margin-bottom: 38px;
 }
@@ -19,7 +22,7 @@
   display: flex;
   align-items: center;
   gap: 9px;
-  margin-bottom: 9px;
+  margin-bottom: 8px;
 }
 
 .section-label::before {
@@ -38,6 +41,7 @@
 
 .section-title h2 {
   margin: 0 0 10px;
+  color: #172033;
   font-size: 40px;
   line-height: 1.15;
   font-weight: 700;
@@ -52,21 +56,30 @@
   line-height: 1.65;
 }
 
+
+/* Project grid */
 .projects-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
 }
 
+
+/* Project card */
 .project-card {
   display: flex;
   flex-direction: column;
   min-width: 0;
   overflow: hidden;
+
   background: #ffffff;
+
   border: 1px solid #dce3ec;
   border-radius: 9px;
-  box-shadow: 0 5px 18px rgba(31, 55, 86, 0.05);
+
+  box-shadow:
+    0 5px 18px rgba(31, 55, 86, 0.05);
+
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease,
@@ -75,108 +88,203 @@
 
 .project-card:hover {
   transform: translateY(-4px);
+
   border-color: #c6d5e8;
-  box-shadow: 0 12px 30px rgba(31, 55, 86, 0.10);
+
+  box-shadow:
+    0 12px 30px rgba(31, 55, 86, 0.10);
 }
 
+
+/* Project image carousel */
 .project-image-wrapper {
   position: relative;
+
   width: 100%;
-  aspect-ratio: 16 / 8.2;
+  height: 205px;
+
   overflow: hidden;
+
   background: #edf2f7;
+
+  border-bottom: 1px solid #e1e7ef;
 }
 
 .project-image {
   display: block;
+
   width: 100%;
   height: 100%;
+
   object-fit: cover;
   object-position: top center;
-  transition: transform 0.35s ease;
+
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease;
 }
 
 .project-card:hover .project-image {
   transform: scale(1.015);
 }
 
+
+/* Project number badge */
 .project-number {
   position: absolute;
+
   left: 10px;
   bottom: -1px;
+
   padding: 3px 7px;
+
   border-radius: 4px 4px 0 0;
+
   background: #e9f1ff;
   color: #2864d7;
+
   font-size: 11px;
   font-weight: 800;
 }
 
+
+/* Carousel indicators */
+.image-indicators {
+  position: absolute;
+
+  left: 50%;
+  bottom: 8px;
+
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  transform: translateX(-50%);
+
+  padding: 4px 7px;
+
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.90);
+
+  backdrop-filter: blur(5px);
+}
+
+.image-dot {
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: #aeb8c6;
+
+  transition:
+    width 0.25s ease,
+    background 0.25s ease;
+}
+
+.image-dot.active {
+  width: 15px;
+
+  border-radius: 5px;
+
+  background: #2864d7;
+}
+
+
+/* Project content */
 .project-content {
   padding: 9px 17px 7px;
 }
 
 .project-content h3 {
   margin: 0 0 4px;
+
   color: #172033;
+
   font-size: 16px;
   line-height: 1.3;
   font-weight: 700;
+
   letter-spacing: -0.2px;
 }
 
 .project-description {
   margin: 0 0 7px;
+
   color: #65748a;
+
   font-size: 11.5px;
   line-height: 1.45;
 }
 
+
+/* Technology badges */
 .technologies {
   display: flex;
   flex-wrap: wrap;
+
   gap: 6px;
+
   margin-bottom: 7px;
 }
 
 .technologies span {
   padding: 3px 7px;
+
   border-radius: 4px;
+
   background: #f3f7fc;
+
   color: #2864d7;
+
   font-size: 10px;
   font-weight: 700;
 }
 
+
+/* Project features */
 .project-features {
   display: flex;
   flex-direction: column;
+
   gap: 3px;
+
   margin: 0;
   padding: 0;
+
   list-style: none;
 }
 
 .project-features li {
   display: flex;
   align-items: flex-start;
+
   gap: 5px;
+
   color: #647287;
+
   font-size: 10.5px;
   line-height: 1.35;
 }
 
 .feature-check {
   flex-shrink: 0;
+
   color: #26384e;
+
   font-size: 10px;
   font-weight: 800;
 }
 
+
+/* Project action buttons */
 .project-footer {
   display: flex;
   align-items: center;
+
   gap: 7px;
+
   padding: 8px 17px 10px;
 }
 
@@ -185,39 +293,40 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+
   gap: 5px;
+
   min-height: 29px;
+
   padding: 5px 11px;
+
   border-radius: 5px;
+
   text-decoration: none;
+
   font-size: 10.5px;
   font-weight: 700;
+
   transition:
     background 0.2s ease,
     border-color 0.2s ease,
     transform 0.2s ease;
 }
 
+
+/* GitHub button */
 .github-button {
   background: #172033;
+
   border: 1px solid #172033;
+
   color: #ffffff;
 }
 
 .github-button:hover {
   background: #26364e;
   border-color: #26364e;
-  transform: translateY(-1px);
-}
 
-.demo-button {
-  background: #ffffff;
-  border: 1px solid #2864d7;
-  color: #2864d7;
-}
-
-.demo-button:hover {
-  background: #f1f6ff;
   transform: translateY(-1px);
 }
 
@@ -225,7 +334,24 @@
   font-size: 10px;
 }
 
-/* Dark mode keeps the same hierarchy with darker surfaces. */
+
+/* Live demo button */
+.demo-button {
+  background: #ffffff;
+
+  border: 1px solid #2864d7;
+
+  color: #2864d7;
+}
+
+.demo-button:hover {
+  background: #f1f6ff;
+
+  transform: translateY(-1px);
+}
+
+
+/* Dark mode */
 :host-context(body.dark-mode) .projects {
   background: #090c11;
   color: #f1f1f1;
@@ -249,13 +375,17 @@
 
 :host-context(body.dark-mode) .project-card {
   background: #14171c;
+
   border-color: #292e37;
+
   box-shadow: none;
 }
 
 :host-context(body.dark-mode) .project-card:hover {
   border-color: #3b4656;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.25);
 }
 
 :host-context(body.dark-mode) .project-image-wrapper {
@@ -265,6 +395,18 @@
 :host-context(body.dark-mode) .project-number {
   background: #182b4b;
   color: #70a7ff;
+}
+
+:host-context(body.dark-mode) .image-indicators {
+  background: rgba(20, 23, 28, 0.90);
+}
+
+:host-context(body.dark-mode) .image-dot {
+  background: #667180;
+}
+
+:host-context(body.dark-mode) .image-dot.active {
+  background: #70a7ff;
 }
 
 :host-context(body.dark-mode) .project-content h3 {
@@ -300,7 +442,9 @@
 
 :host-context(body.dark-mode) .demo-button {
   background: transparent;
+
   border-color: #5b9cff;
+
   color: #70a7ff;
 }
 
@@ -308,7 +452,10 @@
   background: #14223a;
 }
 
+
+/* Tablet */
 @media (max-width: 1100px) {
+
   .projects > .section-title,
   .projects > .projects-list {
     width: min(94%, 900px);
@@ -316,11 +463,16 @@
 
   .projects-list {
     grid-template-columns: repeat(2, 1fr);
+
     gap: 14px;
   }
+
 }
 
+
+/* Mobile */
 @media (max-width: 700px) {
+
   .projects {
     padding: 70px 0 80px;
   }
@@ -340,11 +492,12 @@
 
   .projects-list {
     grid-template-columns: 1fr;
+
     gap: 18px;
   }
 
   .project-image-wrapper {
-    aspect-ratio: 16 / 8.5;
+    height: 210px;
   }
 
   .project-content {
@@ -366,4 +519,5 @@
   .project-footer {
     padding: 9px 16px 12px;
   }
+
 }

@@ -3,28 +3,31 @@
   <div class="section-title">
 
     <div class="section-label">
-      <span>MY WORK</span>
+      <span>My Work</span>
     </div>
 
-    <h2>Featured Projects</h2>
+    <h2>Projects</h2>
 
     <p>
-      A selection of projects I have built while learning and applying
-      modern web development technologies.
+      Here are some of the projects I've built to apply my skills,
+      solve real-world problems, and keep learning.
     </p>
 
   </div>
 
+
   <div class="projects-list">
 
-    @for (project of projects; track project.name) {
+    @for (project of projects; track project.name; let i = $index) {
 
       <article class="project-card">
 
+
+        <!-- Project preview carousel -->
         <div class="project-image-wrapper">
 
           <img
-            [src]="project.image"
+            [src]="project.images[currentImageIndexes[i]]"
             [alt]="project.name + ' project preview'"
             class="project-image"
           >
@@ -33,53 +36,119 @@
             {{ project.number }}
           </span>
 
+
+          <!-- Carousel indicators -->
+          @if (project.images.length > 1) {
+
+            <div class="image-indicators">
+
+              @for (
+                image of project.images;
+                track image;
+                let imageIndex = $index
+              ) {
+
+                <span
+                  class="image-dot"
+                  [class.active]="
+                    imageIndex === currentImageIndexes[i]
+                  "
+                ></span>
+
+              }
+
+            </div>
+
+          }
+
         </div>
 
+
+        <!-- Project information -->
         <div class="project-content">
 
           <h3>
             {{ project.name }}
           </h3>
 
+
           <p class="project-description">
             {{ project.description }}
           </p>
 
+
+          <!-- Technologies -->
           <div class="technologies">
 
-            @for (technology of project.technologies; track technology) {
-              <span>{{ technology }}</span>
+            @for (
+              technology of project.technologies;
+              track technology
+            ) {
+
+              <span>
+                {{ technology }}
+              </span>
+
             }
 
           </div>
 
+
+          <!-- Key project features -->
           <ul class="project-features">
 
-            @for (feature of project.features; track feature) {
+            @for (
+              feature of project.features;
+              track feature
+            ) {
+
               <li>
-                <span class="feature-check">✓</span>
-                <span>{{ feature }}</span>
+
+                <span class="feature-check">
+                  ✓
+                </span>
+
+                <span>
+                  {{ feature }}
+                </span>
+
               </li>
+
             }
 
           </ul>
 
         </div>
 
+
+        <!-- Project links -->
         <div class="project-footer">
 
           @if (project.github !== '#') {
+
             <a
               [href]="project.github"
               target="_blank"
               rel="noopener noreferrer"
               class="github-button"
             >
-              <span class="github-icon">◉</span>
-              <span>GitHub</span>
-              <span>↗</span>
+
+              <span class="github-icon">
+                ◉
+              </span>
+
+              <span>
+                GitHub
+              </span>
+
+              <span>
+                ↗
+              </span>
+
             </a>
+
           }
+
 
           <a
             [href]="project.demo"
@@ -87,8 +156,15 @@
             rel="noopener noreferrer"
             class="demo-button"
           >
-            <span>↗</span>
-            <span>Live Demo</span>
+
+            <span>
+              ↗
+            </span>
+
+            <span>
+              Live Demo
+            </span>
+
           </a>
 
         </div>
