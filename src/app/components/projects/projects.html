@@ -1,8 +1,18 @@
 <section class="projects" id="projects">
 
   <div class="section-title">
-    <p>My Work</p>
-    <h2>Projects</h2>
+
+    <div class="section-label">
+      <span>MY WORK</span>
+    </div>
+
+    <h2>Featured Projects</h2>
+
+    <p>
+      Projects I've built to apply my skills in frontend development,
+      Angular and modern web technologies.
+    </p>
+
   </div>
 
   <div class="projects-list">
@@ -11,23 +21,63 @@
 
       <article class="project-card">
 
-        <h3>{{ project.name }}</h3>
+        <div class="project-top">
 
-        <p class="project-description">
-          {{ project.description }}
-        </p>
+          <span class="project-number">
+            {{ project.number }}
+          </span>
 
-        <div class="technologies">
-
-          @for (technology of project.technologies; track technology) {
-            <span>{{ technology }}</span>
-          }
+          <span class="project-type">
+            {{ project.type }}
+          </span>
 
         </div>
 
-        <div class="project-links">
-          <a [href]="project.github" target="_blank">GitHub</a>
-          <a [href]="project.demo" target="_blank">Live Demo</a>
+        <div class="project-content">
+
+          <h3>
+            {{ project.name }}
+          </h3>
+
+          <p class="project-description">
+            {{ project.description }}
+          </p>
+
+          <div class="technologies">
+
+            @for (technology of project.technologies; track technology) {
+              <span>
+                {{ technology }}
+              </span>
+            }
+
+          </div>
+
+        </div>
+
+        <div class="project-footer">
+
+          <a
+            [href]="project.github"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="project-link github-link"
+            [class.disabled-link]="project.github === '#'"
+          >
+            <span>GitHub</span>
+            <span class="link-arrow">↗</span>
+          </a>
+
+          <a
+            [href]="project.demo"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="project-link live-link"
+          >
+            <span>Live Demo</span>
+            <span class="link-arrow">↗</span>
+          </a>
+
         </div>
 
       </article>
