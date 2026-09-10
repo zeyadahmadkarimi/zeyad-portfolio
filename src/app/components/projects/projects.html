@@ -3,7 +3,7 @@
   <div class="section-title">
 
     <div class="section-label">
-      <span>My Work</span>
+      <span>MY WORK</span>
     </div>
 
     <h2>Projects</h2>
@@ -15,69 +15,62 @@
 
   </div>
 
-
   <div class="projects-list">
 
     @for (project of projects; track project.name; let i = $index) {
 
       <article class="project-card">
 
-
-        <!-- Project preview carousel -->
-        <div class="project-image-wrapper">
+        <!-- Project preview with automatic image rotation. -->
+        <div class="project-preview">
 
           <img
-            [src]="project.images[currentImageIndexes[i]]"
+            [src]="getActiveImage(i)"
             [alt]="project.name + ' project preview'"
             class="project-image"
-          >
+          />
 
-          <span class="project-number">
-            {{ project.number }}
-          </span>
+          <div class="preview-overlay">
+            <span>{{ project.number }}</span>
+          </div>
 
+          <div class="image-indicators">
 
-          <!-- Carousel indicators -->
-          @if (project.images.length > 1) {
+            @for (
+              image of project.images;
+              track image;
+              let imageIndex = $index
+            ) {
 
-            <div class="image-indicators">
+              <span
+                class="image-dot"
+                [class.active]="imageIndex === activeImageIndexes[i]"
+              ></span>
 
-              @for (
-                image of project.images;
-                track image;
-                let imageIndex = $index
-              ) {
+            }
 
-                <span
-                  class="image-dot"
-                  [class.active]="
-                    imageIndex === currentImageIndexes[i]
-                  "
-                ></span>
-
-              }
-
-            </div>
-
-          }
+          </div>
 
         </div>
 
-
-        <!-- Project information -->
         <div class="project-content">
 
-          <h3>
-            {{ project.name }}
-          </h3>
+          <div class="project-heading">
 
+            <span class="project-number">
+              {{ project.number }}
+            </span>
+
+            <h3>
+              {{ project.name }}
+            </h3>
+
+          </div>
 
           <p class="project-description">
             {{ project.description }}
           </p>
 
-
-          <!-- Technologies -->
           <div class="technologies">
 
             @for (
@@ -93,78 +86,45 @@
 
           </div>
 
-
-          <!-- Key project features -->
-          <ul class="project-features">
+          <div class="project-features">
 
             @for (
               feature of project.features;
               track feature
             ) {
 
-              <li>
-
-                <span class="feature-check">
-                  ✓
-                </span>
-
-                <span>
-                  {{ feature }}
-                </span>
-
-              </li>
+              <div class="feature">
+                <span class="feature-check">✓</span>
+                <span>{{ feature }}</span>
+              </div>
 
             }
 
-          </ul>
+          </div>
 
         </div>
 
-
-        <!-- Project links -->
         <div class="project-footer">
 
-          @if (project.github !== '#') {
-
-            <a
-              [href]="project.github"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="github-button"
-            >
-
-              <span class="github-icon">
-                ◉
-              </span>
-
-              <span>
-                GitHub
-              </span>
-
-              <span>
-                ↗
-              </span>
-
-            </a>
-
-          }
-
+          <a
+            [href]="project.github"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="github-link"
+          >
+            <span class="github-icon">◉</span>
+            <span>GitHub</span>
+            <span class="link-arrow">↗</span>
+          </a>
 
           <a
             [href]="project.demo"
             target="_blank"
             rel="noopener noreferrer"
-            class="demo-button"
+            class="demo-link"
           >
-
-            <span>
-              ↗
-            </span>
-
-            <span>
-              Live Demo
-            </span>
-
+            <span>Live Demo</span>
+            <span class="link-arrow">↗</span>
           </a>
 
         </div>

@@ -8,67 +8,41 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 })
 export class Projects implements OnInit, OnDestroy {
 
-  // Stores the currently visible image index for each project.
-  currentImageIndexes: number[] = [];
-
-  private carouselInterval?: ReturnType<typeof setInterval>;
-
+  // Project data and preview images used by the project cards.
   projects = [
     {
       number: '01',
-
-      images: [
-        '/projects/shopnow-1.png',
-        '/projects/shopnow-2.png',
-        '/projects/shopnow-3.png'
-      ],
-
       name: 'ShopNow — E-Commerce Website',
-
+      type: 'E-Commerce Website',
       description:
         'A responsive e-commerce platform with product discovery, search, filtering, sorting, category browsing, cart & quantity management, wishlist, coupons, dynamic pricing, order management, warehouse features and more.',
-
-      technologies: [
-        'HTML5',
-        'CSS3',
-        'JavaScript'
-      ],
-
+      technologies: ['HTML5', 'CSS3', 'JavaScript'],
       features: [
-        'Product search, filtering & categories',
+        'Product search, filtering and categories',
         'Cart, wishlist, Save for Later & coupons',
         'Order/account & warehouse management',
         'Responsive design (desktop & mobile)',
         'Deployed on Vercel'
       ],
-
+      images: [
+        '/projects/shopNow/home.png',
+        '/projects/shopNow/cart-step1.png',
+        '/projects/shopNow/cart-step2.png',
+        '/projects/shopNow/cart-step3.png',
+        '/projects/shopNow/orderSection.png',
+        '/projects/shopNow/footer.png'
+      ],
       github: '#',
-
-      demo:
-        'https://shopnow-new-git-main-zeyadakarimi-2973s-projects.vercel.app/'
+      demo: 'https://shopnow-new-git-main-zeyadakarimi-2973s-projects.vercel.app/'
     },
 
     {
       number: '02',
-
-      images: [
-        '/projects/task-management-1.png',
-        '/projects/task-management-2.png',
-        '/projects/task-management-3.png'
-      ],
-
       name: 'Task Management System — Training Project',
-
+      type: 'Angular Training Project',
       description:
         'An Angular-based task management system with complete CRUD functionality, task status and due-date management, reactive forms, custom validation, routing, and centralized task state management.',
-
-      technologies: [
-        'Angular',
-        'TypeScript',
-        'HTML5',
-        'CSS3'
-      ],
-
+      technologies: ['Angular', 'TypeScript', 'HTML5', 'CSS3'],
       features: [
         'Create, view, edit and delete tasks',
         'Task status, due date & date-picker',
@@ -77,75 +51,71 @@ export class Projects implements OnInit, OnDestroy {
         'ViewChild & AfterViewInit implementation',
         'Responsive interface'
       ],
-
+      images: [
+        '/projects/taskManagementSystem/homePage.png',
+        '/projects/taskManagementSystem/createTask.png',
+        '/projects/taskManagementSystem/editTask.png',
+        '/projects/taskManagementSystem/viewTask.png',
+        '/projects/taskManagementSystem/validation-checker.png',
+        '/projects/taskManagementSystem/taskAddedPopup.png',
+        '/projects/taskManagementSystem/deleteTask.png'
+      ],
       github: '#',
-
-      demo:
-        'https://task-management-system-roan-five.vercel.app/'
+      demo: '#'
     },
 
     {
       number: '03',
-
-      images: [
-        '/projects/portfolio-1.png',
-        '/projects/portfolio-2.png',
-        '/projects/portfolio-3.png'
-      ],
-
       name: 'Developer Portfolio Website',
-
+      type: 'Personal Portfolio',
       description:
         'A personal developer portfolio built using Angular and TypeScript to showcase technical skills, education, projects and professional information with a clean and responsive design.',
-
-      technologies: [
-        'Angular',
-        'TypeScript',
-        'HTML5',
-        'CSS3'
-      ],
-
+      technologies: ['Angular', 'TypeScript', 'HTML5', 'CSS3'],
       features: [
-        'Showcases skills, projects & professional information',
+        'Showcases skills, projects and professional information',
         'Clean and modern UI/UX',
         'Responsive design for desktop and mobile',
         'Angular component-based architecture',
         'Deployed on Vercel'
       ],
-
+      images: [
+        '/projects/portfolio/portfolio-home.png',
+        '/projects/portfolio/about.png',
+        '/projects/portfolio/education.png',
+        '/projects/portfolio/skills.png',
+        '/projects/portfolio/PROJECTS.png',
+        '/projects/portfolio/CONTACT.png'
+      ],
       github: '#',
-
-      demo:
-        'https://zeyad-portfolio-sand.vercel.app/'
+      demo: '#'
     }
   ];
 
+  // Stores the currently visible image for each project.
+  activeImageIndexes: number[] = [0, 0, 0];
+
+  private imageInterval?: ReturnType<typeof setInterval>;
+
   ngOnInit(): void {
-
-    // Start every project from its first preview image.
-    this.currentImageIndexes = this.projects.map(() => 0);
-
-    // Automatically switch project previews every 3 seconds.
-    this.carouselInterval = setInterval(() => {
-
-      this.currentImageIndexes = this.currentImageIndexes.map(
-        (currentIndex, projectIndex) => {
-
-          const totalImages =
-            this.projects[projectIndex].images.length;
-
-          return (currentIndex + 1) % totalImages;
-        }
-      );
-
+    // Rotate project previews automatically every three seconds.
+    this.imageInterval = setInterval(() => {
+      this.projects.forEach((project, index) => {
+        this.activeImageIndexes[index] =
+          (this.activeImageIndexes[index] + 1) % project.images.length;
+      });
     }, 3000);
   }
 
   ngOnDestroy(): void {
-
-    // Clear the interval when the component is destroyed.
-    if (this.carouselInterval) {
-      clearInterval(this.carouselInterval);
+    // Clear the timer when the component is removed from the view.
+    if (this.imageInterval) {
+      clearInterval(this.imageInterval);
     }
+  }
+
+  getActiveImage(projectIndex: number): string {
+    return this.projects[projectIndex].images[
+      this.activeImageIndexes[projectIndex]
+    ];
   }
 }
