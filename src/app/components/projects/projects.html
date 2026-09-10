@@ -1,5 +1,6 @@
 <section class="projects" id="projects">
 
+  <!-- SECTION HEADER -->
   <div class="section-title">
 
     <div class="section-label">
@@ -15,6 +16,8 @@
 
   </div>
 
+
+  <!-- PROJECTS -->
   <div class="projects-list">
 
     @for (project of projects; track project.name; let i = $index) {
@@ -24,15 +27,37 @@
         <!-- PROJECT IMAGE SLIDER -->
         <div class="project-image-wrapper">
 
-          <img
-            class="project-image"
-            [src]="project.images[currentImageIndexes[i]]"
-            [alt]="project.name + ' project preview'"
-          />
+          @for (
+            image of project.images;
+            track image;
+            let imageIndex = $index
+          ) {
 
-          <!-- Image counter -->
-          <div class="image-counter">
-            {{ currentImageIndexes[i] + 1 }} / {{ project.images.length }}
+            <img
+              class="project-image"
+              [class.active]="currentImageIndexes[i] === imageIndex"
+              [src]="image"
+              [alt]="project.name + ' project preview'"
+            />
+
+          }
+
+          <!-- IMAGE INDICATORS -->
+          <div class="image-indicators">
+
+            @for (
+              image of project.images;
+              track image;
+              let imageIndex = $index
+            ) {
+
+              <span
+                class="image-dot"
+                [class.active]="currentImageIndexes[i] === imageIndex"
+              ></span>
+
+            }
+
           </div>
 
         </div>
@@ -41,17 +66,9 @@
         <!-- PROJECT CONTENT -->
         <div class="project-content">
 
-          <div class="project-heading">
-
-            <span class="project-number">
-              {{ (i + 1).toString().padStart(2, '0') }}
-            </span>
-
-            <h3>
-              {{ project.name }}
-            </h3>
-
-          </div>
+          <h3>
+            {{ project.name }}
+          </h3>
 
 
           <p class="project-description">
@@ -76,16 +93,31 @@
           </div>
 
 
-          <!-- FEATURES -->
+          <!-- PROJECT FEATURES -->
+
           @if (i === 0) {
 
             <ul class="project-features">
 
-              <li>Product search, filtering and categories</li>
-              <li>Cart, wishlist, Save for Later & coupons</li>
-              <li>Order/account & warehouse management</li>
-              <li>Responsive design (desktop & mobile)</li>
-              <li>Deployed on Vercel</li>
+              <li>
+                Product search, filtering and categories
+              </li>
+
+              <li>
+                Cart, wishlist, Save for Later & coupons
+              </li>
+
+              <li>
+                Order/account & warehouse management
+              </li>
+
+              <li>
+                Responsive design (desktop & mobile)
+              </li>
+
+              <li>
+                Deployed on Vercel
+              </li>
 
             </ul>
 
@@ -96,12 +128,29 @@
 
             <ul class="project-features">
 
-              <li>Create, view, edit and delete tasks</li>
-              <li>Task status, due date & date-picker</li>
-              <li>Reactive Forms with custom validation</li>
-              <li>Angular routing & query parameters</li>
-              <li>ViewChild & AfterViewInit implementation</li>
-              <li>Responsive interface</li>
+              <li>
+                Create, view, edit and delete tasks
+              </li>
+
+              <li>
+                Task status, due date & date-picker
+              </li>
+
+              <li>
+                Reactive Forms with custom validation
+              </li>
+
+              <li>
+                Angular routing & query parameters
+              </li>
+
+              <li>
+                ViewChild & AfterViewInit implementation
+              </li>
+
+              <li>
+                Responsive interface
+              </li>
 
             </ul>
 
@@ -112,18 +161,32 @@
 
             <ul class="project-features">
 
-              <li>Showcases skills, projects and professional information</li>
-              <li>Clean and modern UI/UX</li>
-              <li>Responsive design for desktop and mobile</li>
-              <li>Angular component-based architecture</li>
-              <li>Deployed on Vercel</li>
+              <li>
+                Showcases skills, projects and professional information
+              </li>
+
+              <li>
+                Clean and modern UI/UX
+              </li>
+
+              <li>
+                Responsive design for desktop and mobile
+              </li>
+
+              <li>
+                Angular component-based architecture
+              </li>
+
+              <li>
+                Deployed on Vercel
+              </li>
 
             </ul>
 
           }
 
 
-          <!-- LINKS -->
+          <!-- PROJECT LINKS -->
           <div class="project-links">
 
             @if (project.github !== '#') {
@@ -134,22 +197,26 @@
                 rel="noopener noreferrer"
                 class="github-link"
               >
-                <span>GitHub</span>
+                GitHub
                 <span>↗</span>
               </a>
 
             }
 
-            <a
-              [href]="project.demo"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="demo-link"
-              [class.disabled-link]="project.demo === '#'"
-            >
-              <span>Live Demo</span>
-              <span>↗</span>
-            </a>
+
+            @if (project.demo !== '#') {
+
+              <a
+                [href]="project.demo"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="demo-link"
+              >
+                Live Demo
+                <span>↗</span>
+              </a>
+
+            }
 
           </div>
 

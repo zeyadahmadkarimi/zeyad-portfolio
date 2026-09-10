@@ -1,6 +1,11 @@
+/* =========================================
+   PROJECTS SECTION
+========================================= */
+
 .projects {
   width: 100%;
   padding: 90px 0 100px;
+
   background: #ffffff;
   color: #151922;
 }
@@ -8,14 +13,15 @@
 .projects > .section-title,
 .projects > .projects-list {
   width: min(1280px, calc(100% - 100px));
+
   margin-left: auto;
   margin-right: auto;
 }
 
 
-/* =========================
+/* =========================================
    SECTION TITLE
-========================= */
+========================================= */
 
 .section-title {
   margin-bottom: 42px;
@@ -24,65 +30,81 @@
 .section-label {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 4px;
+
+  gap: 9px;
+
+  margin-bottom: 5px;
 }
 
 .section-label::before {
   content: "";
+
   width: 28px;
   height: 1px;
+
   background: #438cff;
 }
 
 .section-label span {
-  color: #7d8ba1;
+  color: #7c899c;
+
   font-size: 12px;
   font-weight: 600;
+
   letter-spacing: 1.5px;
 }
 
 .section-title h2 {
-  margin: 0 0 5px;
+  margin: 0 0 6px;
+
   color: #151922;
-  font-size: 38px;
+
+  font-size: 40px;
   font-weight: 700;
+
+  line-height: 1.15;
   letter-spacing: -1px;
 }
 
 .section-title > p {
-  max-width: 560px;
+  max-width: 620px;
+
   margin: 0;
-  color: #65758b;
+
+  color: #61718a;
+
   font-size: 14px;
-  line-height: 1.55;
+  line-height: 1.6;
 }
 
 
-/* =========================
+/* =========================================
    PROJECT GRID
-========================= */
+========================================= */
 
 .projects-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
   gap: 14px;
 }
 
 
-/* =========================
+/* =========================================
    PROJECT CARD
-========================= */
+========================================= */
 
 .project-card {
-  position: relative;
   display: flex;
   flex-direction: column;
 
+  min-width: 0;
+
   background: #ffffff;
 
-  border: 1px solid #dce4ee;
-  border-radius: 8px;
+  border: 1px solid #dbe3ed;
+  border-radius: 9px;
 
   overflow: hidden;
 
@@ -96,20 +118,23 @@
 
 .project-card:hover {
   transform: translateY(-4px);
+
   border-color: #b8cce7;
-  box-shadow: 0 15px 35px rgba(30, 50, 80, 0.10);
+
+  box-shadow:
+    0 15px 35px rgba(30, 50, 80, 0.10);
 }
 
 
-/* =========================
-   IMAGE SLIDER
-========================= */
+/* =========================================
+   PROJECT IMAGE SLIDER
+========================================= */
 
 .project-image-wrapper {
   position: relative;
 
   width: 100%;
-  height: 205px;
+  height: 245px;
 
   overflow: hidden;
 
@@ -117,57 +142,92 @@
 }
 
 
-/* Actual project screenshot */
+/* Every image occupies exactly same area */
 
 .project-image {
+  position: absolute;
+
+  inset: 0;
+
   display: block;
 
   width: 100%;
   height: 100%;
 
   object-fit: cover;
-
   object-position: top center;
 
+  opacity: 0;
+
   transition:
-    opacity 0.5s ease,
-    transform 0.5s ease;
+    opacity 0.7s ease-in-out;
+
+  pointer-events: none;
 }
 
 
-/* Small zoom on image */
+/* Active image */
 
-.project-card:hover .project-image {
-  transform: scale(1.015);
+.project-image.active {
+  opacity: 1;
 }
 
 
-/* Image number */
+/* =========================================
+   IMAGE DOTS
+========================================= */
 
-.image-counter {
+.image-indicators {
   position: absolute;
 
-  right: 10px;
+  left: 50%;
   bottom: 10px;
 
-  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+
+  gap: 4px;
+
+  padding: 5px 7px;
+
+  transform: translateX(-50%);
+
+  background: rgba(15, 25, 40, 0.65);
+
+  border-radius: 20px;
+
+  backdrop-filter: blur(5px);
+
+  z-index: 5;
+}
+
+.image-dot {
+  display: block;
+
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.55);
+
+  transition:
+    width 0.25s ease,
+    background 0.25s ease;
+}
+
+.image-dot.active {
+  width: 13px;
 
   border-radius: 5px;
 
-  background: rgba(15, 25, 40, 0.72);
-
-  color: #ffffff;
-
-  font-size: 10px;
-  font-weight: 600;
-
-  backdrop-filter: blur(4px);
+  background: #ffffff;
 }
 
 
-/* =========================
-   CONTENT
-========================= */
+/* =========================================
+   PROJECT CONTENT
+========================================= */
 
 .project-content {
   display: flex;
@@ -179,62 +239,40 @@
 }
 
 
-/* =========================
-   NUMBER + TITLE
-========================= */
+/* =========================================
+   PROJECT TITLE
+========================================= */
 
-.project-heading {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-
-  margin-bottom: 7px;
-}
-
-.project-number {
-  flex-shrink: 0;
-
-  padding: 3px 6px;
-
-  border-radius: 4px;
-
-  background: #e5f0ff;
-
-  color: #2878ed;
-
-  font-size: 10px;
-  font-weight: 700;
-}
-
-.project-heading h3 {
-  margin: 0;
+.project-content h3 {
+  margin: 0 0 7px;
 
   color: #172033;
 
   font-size: 16px;
   font-weight: 700;
 
-  line-height: 1.3;
+  line-height: 1.35;
 }
 
 
-/* =========================
+/* =========================================
    DESCRIPTION
-========================= */
+========================================= */
 
 .project-description {
-  margin: 0 0 8px;
+  margin: 0 0 9px;
 
   color: #61718a;
 
   font-size: 12px;
-  line-height: 1.45;
+
+  line-height: 1.48;
 }
 
 
-/* =========================
+/* =========================================
    TECHNOLOGIES
-========================= */
+========================================= */
 
 .technologies {
   display: flex;
@@ -242,7 +280,7 @@
 
   gap: 5px;
 
-  margin-bottom: 7px;
+  margin-bottom: 8px;
 }
 
 .technologies span {
@@ -250,32 +288,67 @@
 
   border-radius: 4px;
 
-  background: #f0f6ff;
+  background: #eef5ff;
 
   color: #2466c4;
 
   font-size: 10px;
   font-weight: 600;
+
+  line-height: 1.3;
 }
 
 
-/* Different tech colors */
+/* =========================================
+   TECHNOLOGY COLORS
+========================================= */
 
-.project-card:nth-child(1) .technologies span:nth-child(1),
-.project-card:nth-child(1) .technologies span:nth-child(3) {
-  background: #fff1ed;
-  color: #e85b32;
+.project-card:nth-child(1)
+.technologies span:nth-child(1) {
+  background: #fff0ed;
+  color: #e55c38;
 }
 
-.project-card:nth-child(1) .technologies span:nth-child(2) {
-  background: #eaf5ff;
-  color: #1976d2;
+.project-card:nth-child(1)
+.technologies span:nth-child(2) {
+  background: #eaf4ff;
+  color: #2673ce;
+}
+
+.project-card:nth-child(1)
+.technologies span:nth-child(3) {
+  background: #fff5dc;
+  color: #bd7a00;
+}
+
+.project-card:nth-child(2)
+.technologies span:nth-child(1) {
+  background: #ffecef;
+  color: #df294b;
+}
+
+.project-card:nth-child(2)
+.technologies span:nth-child(2) {
+  background: #eaf4ff;
+  color: #2466c4;
+}
+
+.project-card:nth-child(2)
+.technologies span:nth-child(3) {
+  background: #fff0ed;
+  color: #e55c38;
+}
+
+.project-card:nth-child(2)
+.technologies span:nth-child(4) {
+  background: #eaf4ff;
+  color: #2673ce;
 }
 
 
-/* =========================
+/* =========================================
    FEATURES
-========================= */
+========================================= */
 
 .project-features {
   display: flex;
@@ -297,6 +370,7 @@
   color: #64748b;
 
   font-size: 10.5px;
+
   line-height: 1.45;
 }
 
@@ -308,15 +382,15 @@
   left: 0;
   top: 0;
 
-  color: #2f6fca;
+  color: #2d6fc9;
 
   font-weight: 700;
 }
 
 
-/* =========================
-   LINKS
-========================= */
+/* =========================================
+   PROJECT LINKS
+========================================= */
 
 .project-links {
   display: flex;
@@ -325,7 +399,7 @@
   gap: 7px;
 
   margin-top: auto;
-  padding-top: 10px;
+  padding-top: 11px;
 }
 
 .project-links a {
@@ -335,7 +409,7 @@
 
   gap: 6px;
 
-  min-height: 29px;
+  min-height: 30px;
 
   padding: 5px 10px;
 
@@ -353,23 +427,29 @@
 }
 
 
-/* GitHub */
+/* =========================================
+   GITHUB
+========================================= */
 
 .github-link {
   background: #111827;
+
   color: #ffffff;
 }
 
 .github-link:hover {
-  background: #253044;
+  background: #273244;
+
   transform: translateY(-1px);
 }
 
 
-/* Live demo */
+/* =========================================
+   LIVE DEMO
+========================================= */
 
 .demo-link {
-  border: 1px solid #8bb7ff;
+  border: 1px solid #8db8ff;
 
   background: #ffffff;
 
@@ -378,29 +458,23 @@
 
 .demo-link:hover {
   background: #edf5ff;
+
   transform: translateY(-1px);
 }
 
 
-/* Disabled */
-
-.disabled-link {
-  opacity: 0.45;
-  pointer-events: none;
-}
-
-
-/* =========================
+/* =========================================
    DARK MODE
-========================= */
+========================================= */
 
 :host-context(body.dark-mode) .projects {
   background: #090c11;
+
   color: #f1f1f1;
 }
 
 :host-context(body.dark-mode) .section-label span {
-  color: #8f9bad;
+  color: #8e99aa;
 }
 
 :host-context(body.dark-mode) .section-label::before {
@@ -417,25 +491,24 @@
 
 :host-context(body.dark-mode) .project-card {
   background: #12161c;
+
   border-color: #292f38;
+
   box-shadow: none;
 }
 
 :host-context(body.dark-mode) .project-card:hover {
-  border-color: #3d4858;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  border-color: #3e4959;
+
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.30);
 }
 
 :host-context(body.dark-mode) .project-image-wrapper {
-  background: #1b2129;
+  background: #1a2028;
 }
 
-:host-context(body.dark-mode) .project-number {
-  background: #172c4b;
-  color: #68a6ff;
-}
-
-:host-context(body.dark-mode) .project-heading h3 {
+:host-context(body.dark-mode) .project-content h3 {
   color: #f1f1f1;
 }
 
@@ -445,6 +518,7 @@
 
 :host-context(body.dark-mode) .technologies span {
   background: #192537;
+
   color: #70aaff;
 }
 
@@ -458,7 +532,9 @@
 
 :host-context(body.dark-mode) .demo-link {
   background: transparent;
+
   border-color: #4c82d1;
+
   color: #69a5ff;
 }
 
@@ -467,9 +543,9 @@
 }
 
 
-/* =========================
+/* =========================================
    TABLET
-========================= */
+========================================= */
 
 @media (max-width: 1050px) {
 
@@ -479,15 +555,15 @@
   }
 
   .projects-list {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
 }
 
 
-/* =========================
+/* =========================================
    MOBILE
-========================= */
+========================================= */
 
 @media (max-width: 700px) {
 
@@ -514,37 +590,39 @@
 
   .projects-list {
     grid-template-columns: 1fr;
+
     gap: 18px;
   }
 
   .project-image-wrapper {
-    height: 220px;
+    height: 230px;
   }
 
   .project-content {
     padding: 15px;
   }
 
-  .project-heading h3 {
+  .project-content h3 {
     font-size: 16px;
   }
 
 }
 
 
-/* =========================
+/* =========================================
    SMALL MOBILE
-========================= */
+========================================= */
 
 @media (max-width: 420px) {
 
   .project-image-wrapper {
-    height: 200px;
+    height: 210px;
   }
 
   .project-links a {
+    padding: 5px 9px;
+
     font-size: 10px;
-    padding: 5px 8px;
   }
 
 }

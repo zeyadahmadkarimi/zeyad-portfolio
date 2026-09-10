@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-projects',
@@ -10,13 +10,11 @@ export class Projects implements OnInit, OnDestroy {
 
   currentImageIndexes: number[] = [0, 0, 0];
 
-  private imageInterval!: ReturnType<typeof setInterval>;
+  private imageSliderInterval?: ReturnType<typeof setInterval>;
 
   projects = [
     {
       name: 'ShopNow — E-Commerce Website',
-      type: 'E-Commerce Website',
-
       description:
         'A responsive e-commerce platform with product discovery, search, filtering, sorting, category browsing, cart & quantity management, wishlist, coupons, dynamic pricing, order management, warehouse features and more.',
 
@@ -36,13 +34,12 @@ export class Projects implements OnInit, OnDestroy {
       ],
 
       github: '#',
-      demo: 'https://shopnow-new-git-main-zeyadakarimi-2973s-projects.vercel.app/'
+      demo:
+        'https://shopnow-new-git-main-zeyadakarimi-2973s-projects.vercel.app/'
     },
 
     {
       name: 'Task Management System — Training Project',
-      type: 'Angular Training Project',
-
       description:
         'An Angular-based task management system with complete CRUD functionality, task status and due-date management, reactive forms, custom validation, routing, and centralized task state management.',
 
@@ -69,8 +66,6 @@ export class Projects implements OnInit, OnDestroy {
 
     {
       name: 'Developer Portfolio Website',
-      type: 'Personal Portfolio',
-
       description:
         'A personal developer portfolio built using Angular and TypeScript to showcase technical skills, education, projects and professional information with a clean and responsive design.',
 
@@ -96,7 +91,7 @@ export class Projects implements OnInit, OnDestroy {
   ];
 
   ngOnInit(): void {
-    this.imageInterval = setInterval(() => {
+    this.imageSliderInterval = setInterval(() => {
       this.projects.forEach((project, index) => {
         this.currentImageIndexes[index] =
           (this.currentImageIndexes[index] + 1) %
@@ -106,8 +101,8 @@ export class Projects implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.imageInterval) {
-      clearInterval(this.imageInterval);
+    if (this.imageSliderInterval) {
+      clearInterval(this.imageSliderInterval);
     }
   }
 }
