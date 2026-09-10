@@ -1,8 +1,6 @@
 <section class="projects" id="projects">
 
-  <!-- SECTION HEADER -->
   <div class="section-title">
-
     <div class="section-label">
       <span>MY WORK</span>
     </div>
@@ -13,184 +11,98 @@
       Here are some of the projects I've built to apply my skills,
       solve real-world problems, and keep learning.
     </p>
-
   </div>
 
-
-  <!-- PROJECTS -->
   <div class="projects-list">
 
     @for (project of projects; track project.name; let i = $index) {
 
       <article class="project-card">
 
-        <!-- PROJECT IMAGE SLIDER -->
         <div class="project-image-wrapper">
 
-          @for (
-            image of project.images;
-            track image;
-            let imageIndex = $index
-          ) {
+          <div
+            class="project-slider-track"
+            [style.transform]="'translateX(-' + (currentImageIndexes[i] * 100) + '%)'"
+          >
+            @for (
+              image of project.images;
+              track image
+            ) {
+              <img
+                class="project-image"
+                [src]="image"
+                [alt]="project.name + ' project preview'"
+              />
+            }
+          </div>
 
-            <img
-              class="project-image"
-              [class.active]="currentImageIndexes[i] === imageIndex"
-              [src]="image"
-              [alt]="project.name + ' project preview'"
-            />
-
-          }
-
-          <!-- IMAGE INDICATORS -->
           <div class="image-indicators">
-
             @for (
               image of project.images;
               track image;
               let imageIndex = $index
             ) {
-
               <span
                 class="image-dot"
                 [class.active]="currentImageIndexes[i] === imageIndex"
               ></span>
-
             }
-
           </div>
 
         </div>
 
-
-        <!-- PROJECT CONTENT -->
         <div class="project-content">
 
-          <h3>
-            {{ project.name }}
-          </h3>
-
+          <h3>{{ project.name }}</h3>
 
           <p class="project-description">
             {{ project.description }}
           </p>
 
-
-          <!-- TECHNOLOGIES -->
           <div class="technologies">
-
             @for (
               technology of project.technologies;
               track technology
             ) {
-
-              <span>
-                {{ technology }}
-              </span>
-
+              <span>{{ technology }}</span>
             }
-
           </div>
 
-
-          <!-- PROJECT FEATURES -->
-
           @if (i === 0) {
-
             <ul class="project-features">
-
-              <li>
-                Product search, filtering and categories
-              </li>
-
-              <li>
-                Cart, wishlist, Save for Later & coupons
-              </li>
-
-              <li>
-                Order/account & warehouse management
-              </li>
-
-              <li>
-                Responsive design (desktop & mobile)
-              </li>
-
-              <li>
-                Deployed on Vercel
-              </li>
-
+              <li>Product search, filtering and categories</li>
+              <li>Cart, wishlist, Save for Later & coupons</li>
+              <li>Order/account & warehouse management</li>
+              <li>Responsive design (desktop & mobile)</li>
+              <li>Deployed on Vercel</li>
             </ul>
-
           }
-
 
           @if (i === 1) {
-
             <ul class="project-features">
-
-              <li>
-                Create, view, edit and delete tasks
-              </li>
-
-              <li>
-                Task status, due date & date-picker
-              </li>
-
-              <li>
-                Reactive Forms with custom validation
-              </li>
-
-              <li>
-                Angular routing & query parameters
-              </li>
-
-              <li>
-                ViewChild & AfterViewInit implementation
-              </li>
-
-              <li>
-                Responsive interface
-              </li>
-
+              <li>Create, view, edit and delete tasks</li>
+              <li>Task status, due date & date-picker</li>
+              <li>Reactive Forms with custom validation</li>
+              <li>Angular routing & query parameters</li>
+              <li>ViewChild & AfterViewInit implementation</li>
+              <li>Responsive interface</li>
             </ul>
-
           }
-
 
           @if (i === 2) {
-
             <ul class="project-features">
-
-              <li>
-                Showcases skills, projects and professional information
-              </li>
-
-              <li>
-                Clean and modern UI/UX
-              </li>
-
-              <li>
-                Responsive design for desktop and mobile
-              </li>
-
-              <li>
-                Angular component-based architecture
-              </li>
-
-              <li>
-                Deployed on Vercel
-              </li>
-
+              <li>Showcases skills, projects and professional information</li>
+              <li>Clean and modern UI/UX</li>
+              <li>Responsive design for desktop and mobile</li>
+              <li>Angular component-based architecture</li>
+              <li>Deployed on Vercel</li>
             </ul>
-
           }
 
-
-          <!-- PROJECT LINKS -->
           <div class="project-links">
 
             @if (project.github !== '#') {
-
               <a
                 [href]="project.github"
                 target="_blank"
@@ -200,12 +112,9 @@
                 GitHub
                 <span>↗</span>
               </a>
-
             }
 
-
             @if (project.demo !== '#') {
-
               <a
                 [href]="project.demo"
                 target="_blank"
@@ -215,7 +124,6 @@
                 Live Demo
                 <span>↗</span>
               </a>
-
             }
 
           </div>
