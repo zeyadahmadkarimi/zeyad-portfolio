@@ -4,15 +4,14 @@
 
 .projects {
   width: 100%;
-  padding: 90px 6%;
+  padding: 55px 6% 75px;
+
   box-sizing: border-box;
 
   background: var(--bg-main);
   color: var(--text-main);
 
-  transition:
-    background-color 0.35s ease,
-    color 0.35s ease;
+  overflow: hidden;
 }
 
 
@@ -22,51 +21,51 @@
 
 .section-title {
   max-width: 760px;
-  margin: 0 auto 55px;
+
+  margin: 0 auto 35px;
+
   text-align: center;
 }
 
 .section-label {
   display: inline-flex;
+
   align-items: center;
   justify-content: center;
 
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .section-label span {
-  font-size: 13px;
+  font-size: 12px;
+
   font-weight: 700;
+
   letter-spacing: 2px;
+
   color: var(--accent);
 }
 
 .section-title h2 {
-  margin: 0 0 15px;
+  margin: 0;
 
-  font-size: 42px;
+  font-size: 40px;
+
   font-weight: 800;
-  line-height: 1.2;
+
+  line-height: 1.15;
 
   color: var(--text-main);
 }
 
-.section-title p {
-  margin: 0;
-
-  font-size: 16px;
-  line-height: 1.7;
-
-  color: var(--text-secondary);
-}
-
 
 /* =====================================================
-   PROJECT GRID
+   PROJECTS LIST
 ===================================================== */
 
 .projects-list {
   width: 100%;
+
   max-width: 1250px;
 
   margin: 0 auto;
@@ -78,7 +77,7 @@
 
   gap: 28px;
 
-  align-items: start;
+  perspective: 1200px;
 }
 
 
@@ -87,76 +86,165 @@
 ===================================================== */
 
 .project-card {
+  position: relative;
+
   width: 100%;
+
+  min-width: 0;
+
   height: 455px;
 
   box-sizing: border-box;
 
+  overflow: hidden;
+
   border: 1px solid var(--border);
+
   border-radius: 18px;
 
   background: var(--bg-card);
 
-  overflow: hidden;
+  cursor: pointer;
+
+  opacity: 0;
+
+  pointer-events: none;
 
   box-shadow:
     0 10px 30px rgba(0, 0, 0, 0.07);
 
-  cursor: pointer;
-
   transition:
-    background-color 0.35s ease,
-    border-color 0.35s ease,
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
-}
+    opacity 0.75s ease,
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s ease;
 
-.project-card:hover {
-  transform: translateY(-3px);
-
-  box-shadow:
-    0 15px 35px rgba(0, 0, 0, 0.11);
+  will-change:
+    transform,
+    opacity;
 }
 
 
 /* =====================================================
-   CARD IMAGE
+   CARD 1
+===================================================== */
+
+.project-card-1 {
+  transform:
+    translate3d(-180px, 45px, 0)
+    scale(0.88);
+}
+
+
+/* =====================================================
+   CARD 2
+===================================================== */
+
+.project-card-2 {
+  transform:
+    translate3d(0, 170px, 0)
+    scale(0.88);
+}
+
+
+/* =====================================================
+   CARD 3
+===================================================== */
+
+.project-card-3 {
+  transform:
+    translate3d(180px, 45px, 0)
+    scale(0.88);
+}
+
+
+/* =====================================================
+   CARD VISIBLE
+===================================================== */
+
+.project-card.project-visible {
+  opacity: 1;
+
+  pointer-events: auto;
+
+  transform:
+    translate3d(0, 0, 0)
+    scale(1);
+}
+
+
+/* =====================================================
+   STAGGER
+===================================================== */
+
+.project-card-1.project-visible {
+  transition-delay: 0s;
+}
+
+.project-card-2.project-visible {
+  transition-delay: 0.15s;
+}
+
+.project-card-3.project-visible {
+  transition-delay: 0.30s;
+}
+
+
+/* =====================================================
+   CARD HOVER
+===================================================== */
+
+.project-card.project-visible:hover {
+  transform:
+    translate3d(0, -7px, 0)
+    scale(1.015);
+
+  box-shadow:
+    0 20px 45px rgba(0, 0, 0, 0.13);
+}
+
+
+/* =====================================================
+   IMAGE
 ===================================================== */
 
 .project-image-wrapper {
   position: relative;
 
   width: 100%;
+
   height: 245px;
 
   overflow: hidden;
 
-  border-radius: 18px 18px 0 0;
-
-  background: var(--bg-secondary);
+  background:
+    var(--bg-secondary);
 }
 
 
 /* =====================================================
-   CARD SLIDER
+   CARD IMAGE SLIDER
 ===================================================== */
 
 .project-slider-track {
   display: flex;
 
   width: 100%;
+
   height: 100%;
 
   transition:
     transform 0.7s ease-in-out;
 
-  will-change: transform;
+  will-change:
+    transform;
 }
 
 .project-image {
-  flex: 0 0 100%;
+  flex:
+    0 0 100%;
 
   width: 100%;
+
   height: 100%;
 
   min-width: 100%;
@@ -165,45 +253,55 @@
 
   object-fit: cover;
 
-  background: var(--bg-secondary);
+  background:
+    var(--bg-secondary);
 }
 
 
 /* =====================================================
-   CARD DOTS
+   IMAGE INDICATORS
 ===================================================== */
 
 .image-indicators {
   position: absolute;
 
   left: 50%;
+
   bottom: 12px;
 
-  transform: translateX(-50%);
+  transform:
+    translateX(-50%);
 
   display: flex;
+
   align-items: center;
 
   gap: 6px;
 
-  padding: 5px 8px;
+  padding:
+    5px 8px;
 
-  border-radius: 20px;
+  border-radius:
+    20px;
 
-  background: rgba(0, 0, 0, 0.45);
+  background:
+    rgba(0, 0, 0, 0.45);
 
-  backdrop-filter: blur(5px);
+  backdrop-filter:
+    blur(5px);
 
   z-index: 5;
 }
 
 .image-dot {
   width: 6px;
+
   height: 6px;
 
   border-radius: 50%;
 
-  background: rgba(255, 255, 255, 0.55);
+  background:
+    rgba(255, 255, 255, 0.55);
 
   transition:
     width 0.3s ease,
@@ -215,7 +313,8 @@
 
   border-radius: 10px;
 
-  background: #ffffff;
+  background:
+    #ffffff;
 }
 
 
@@ -228,22 +327,34 @@
 }
 
 .project-content h3 {
-  margin: 0 0 12px;
+  margin:
+    0 0 12px;
 
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 1.35;
+  font-size:
+    20px;
 
-  color: var(--text-main);
+  font-weight:
+    700;
+
+  line-height:
+    1.35;
+
+  color:
+    var(--text-main);
 }
 
 .project-description {
-  margin: 0 0 18px;
+  margin:
+    0 0 18px;
 
-  font-size: 14px;
-  line-height: 1.7;
+  font-size:
+    14px;
 
-  color: var(--text-secondary);
+  line-height:
+    1.7;
+
+  color:
+    var(--text-secondary);
 }
 
 
@@ -252,23 +363,34 @@
 ===================================================== */
 
 .technologies {
-  display: flex;
-  flex-wrap: wrap;
+  display:
+    flex;
 
-  gap: 8px;
+  flex-wrap:
+    wrap;
+
+  gap:
+    8px;
 }
 
 .technologies span {
-  padding: 6px 10px;
+  padding:
+    6px 10px;
 
-  border-radius: 7px;
+  border-radius:
+    7px;
 
-  background: var(--accent-soft);
+  background:
+    var(--accent-soft);
 
-  color: var(--accent);
+  color:
+    var(--accent);
 
-  font-size: 12px;
-  font-weight: 600;
+  font-size:
+    12px;
+
+  font-weight:
+    600;
 }
 
 
@@ -277,27 +399,44 @@
 ===================================================== */
 
 .popup-overlay {
-  position: fixed;
+  position:
+    fixed;
 
-  inset: 0;
+  inset:
+    0;
 
-  width: 100%;
-  height: 100%;
+  width:
+    100%;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height:
+    100%;
 
-  padding: 20px;
+  display:
+    flex;
 
-  box-sizing: border-box;
+  align-items:
+    center;
 
-  background: var(--overlay);
+  justify-content:
+    center;
 
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  padding:
+    20px;
 
-  z-index: 9999;
+  box-sizing:
+    border-box;
+
+  background:
+    var(--overlay);
+
+  backdrop-filter:
+    blur(5px);
+
+  -webkit-backdrop-filter:
+    blur(5px);
+
+  z-index:
+    9999;
 
   animation:
     popupOverlayIn 0.2s ease;
@@ -309,53 +448,64 @@
 ===================================================== */
 
 .project-popup {
-  width: min(94vw, 1500px);
-  height: min(82vh, 760px);
+  width:
+    min(94vw, 1500px);
 
-  display: grid;
+  height:
+    min(82vh, 760px);
 
-  grid-template-columns: 65% 35%;
+  display:
+    grid;
 
-  box-sizing: border-box;
+  grid-template-columns:
+    65% 35%;
 
-  overflow: hidden;
+  overflow:
+    hidden;
 
-  background: var(--bg-popup);
+  border:
+    1px solid var(--border);
 
-  border: 1px solid var(--border);
+  border-radius:
+    24px;
 
-  border-radius: 24px;
+  background:
+    var(--bg-popup);
 
   box-shadow:
-    0 35px 100px rgba(0, 0, 0, 0.35);
+    0 35px 100px
+    rgba(0, 0, 0, 0.35);
 
   animation:
     popupIn 0.25s ease;
-
-  z-index: 10000;
 }
 
 
 /* =====================================================
-   POPUP IMAGE AREA
+   POPUP IMAGE
 ===================================================== */
 
 .popup-image-wrapper {
-  position: relative;
+  position:
+    relative;
 
-  width: 100%;
-  height: 100%;
+  width:
+    100%;
 
-  min-width: 0;
-  min-height: 0;
+  height:
+    100%;
 
-  overflow: hidden;
+  min-width:
+    0;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  min-height:
+    0;
 
-  background: var(--bg-secondary);
+  overflow:
+    hidden;
+
+  background:
+    var(--bg-secondary);
 }
 
 
@@ -364,74 +514,100 @@
 ===================================================== */
 
 .popup-slider-track {
-  display: flex;
+  display:
+    flex;
 
-  width: 100%;
-  height: 100%;
+  width:
+    100%;
+
+  height:
+    100%;
 
   transition:
     transform 0.7s ease-in-out;
 
-  will-change: transform;
+  will-change:
+    transform;
 }
-
-
-/* =====================================================
-   POPUP IMAGE
-===================================================== */
 
 .popup-image {
-  flex: 0 0 100%;
+  flex:
+    0 0 100%;
 
-  width: 100%;
-  height: 100%;
+  width:
+    100%;
 
-  min-width: 100%;
-  min-height: 100%;
+  height:
+    100%;
 
-  display: block;
+  min-width:
+    100%;
 
-  object-fit: contain;
+  display:
+    block;
 
-  background: var(--bg-secondary);
+  object-fit:
+    contain;
+
+  background:
+    var(--bg-secondary);
 }
 
 
 /* =====================================================
-   POPUP DOTS
+   POPUP INDICATORS
 ===================================================== */
 
 .popup-image-indicators {
-  position: absolute;
+  position:
+    absolute;
 
-  left: 50%;
-  bottom: 18px;
+  left:
+    50%;
 
-  transform: translateX(-50%);
+  bottom:
+    18px;
 
-  display: flex;
-  align-items: center;
+  transform:
+    translateX(-50%);
 
-  gap: 6px;
+  display:
+    flex;
 
-  padding: 6px 10px;
+  align-items:
+    center;
 
-  border-radius: 20px;
+  gap:
+    6px;
 
-  background: rgba(0, 0, 0, 0.45);
+  padding:
+    6px 10px;
 
-  backdrop-filter: blur(5px);
+  border-radius:
+    20px;
 
-  z-index: 5;
+  background:
+    rgba(0, 0, 0, 0.45);
+
+  backdrop-filter:
+    blur(5px);
+
+  z-index:
+    5;
 }
 
 .popup-dot {
-  width: 7px;
-  height: 7px;
+  width:
+    7px;
 
-  border-radius: 50%;
+  height:
+    7px;
 
-  background: rgba(255, 255, 255, 0.65);
+  border-radius:
+    50%;
+
+  background:
+    rgba(255, 255, 255, 0.65);
 
   transition:
     width 0.3s ease,
@@ -439,11 +615,14 @@
 }
 
 .popup-dot.active {
-  width: 20px;
+  width:
+    20px;
 
-  border-radius: 10px;
+  border-radius:
+    10px;
 
-  background: #ffffff;
+  background:
+    #ffffff;
 }
 
 
@@ -452,27 +631,41 @@
 ===================================================== */
 
 .popup-content {
-  width: 100%;
-  height: 100%;
+  width:
+    100%;
 
-  min-width: 0;
-  min-height: 0;
+  height:
+    100%;
 
-  padding: 42px 44px;
+  min-width:
+    0;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  min-height:
+    0;
 
-  box-sizing: border-box;
+  padding:
+    42px 44px;
 
-  overflow: hidden;
+  box-sizing:
+    border-box;
 
-  background: var(--bg-popup);
+  display:
+    flex;
 
-  color: var(--text-main);
+  flex-direction:
+    column;
 
-  border-left: 1px solid var(--border);
+  justify-content:
+    center;
+
+  overflow:
+    hidden;
+
+  background:
+    var(--bg-popup);
+
+  border-left:
+    1px solid var(--border);
 }
 
 
@@ -481,16 +674,23 @@
 ===================================================== */
 
 .popup-label {
-  display: block;
+  display:
+    block;
 
-  margin-bottom: 14px;
+  margin-bottom:
+    14px;
 
-  color: var(--accent);
+  color:
+    var(--accent);
 
-  font-size: 14px;
-  font-weight: 700;
+  font-size:
+    14px;
 
-  letter-spacing: 3px;
+  font-weight:
+    700;
+
+  letter-spacing:
+    3px;
 }
 
 
@@ -499,15 +699,20 @@
 ===================================================== */
 
 .popup-content h3 {
-  margin: 0 0 18px;
+  margin:
+    0 0 18px;
 
-  color: var(--text-main);
+  font-size:
+    clamp(30px, 2.5vw, 48px);
 
-  font-size: clamp(30px, 2.5vw, 48px);
+  line-height:
+    1.12;
 
-  line-height: 1.12;
+  font-weight:
+    700;
 
-  font-weight: 700;
+  color:
+    var(--text-main);
 }
 
 
@@ -516,13 +721,17 @@
 ===================================================== */
 
 .popup-description {
-  margin: 0 0 22px;
+  margin:
+    0 0 22px;
 
-  color: var(--text-secondary);
+  font-size:
+    17px;
 
-  font-size: 17px;
+  line-height:
+    1.6;
 
-  line-height: 1.6;
+  color:
+    var(--text-secondary);
 }
 
 
@@ -531,30 +740,37 @@
 ===================================================== */
 
 .popup-technologies {
-  display: flex;
-  flex-wrap: wrap;
+  display:
+    flex;
 
-  gap: 9px;
+  flex-wrap:
+    wrap;
 
-  margin-bottom: 22px;
+  gap:
+    9px;
+
+  margin-bottom:
+    22px;
 }
 
 .popup-technologies span {
-  display: inline-flex;
-  align-items: center;
+  padding:
+    8px 13px;
 
-  padding: 8px 13px;
+  border-radius:
+    8px;
 
-  border-radius: 8px;
+  background:
+    var(--accent-soft);
 
-  background: var(--accent-soft);
+  color:
+    var(--accent);
 
-  color: var(--accent);
+  font-size:
+    14px;
 
-  font-size: 14px;
-  font-weight: 600;
-
-  white-space: nowrap;
+  font-weight:
+    600;
 }
 
 
@@ -563,23 +779,25 @@
 ===================================================== */
 
 .popup-features {
-  margin: 0 0 24px;
+  margin:
+    0 0 24px;
 
-  padding-left: 20px;
+  padding-left:
+    20px;
 
-  color: var(--text-secondary);
+  color:
+    var(--text-secondary);
 
-  font-size: 15px;
+  font-size:
+    15px;
 
-  line-height: 1.5;
+  line-height:
+    1.5;
 }
 
 .popup-features li {
-  margin-bottom: 6px;
-}
-
-.popup-features li:last-child {
-  margin-bottom: 0;
+  margin-bottom:
+    6px;
 }
 
 
@@ -588,92 +806,105 @@
 ===================================================== */
 
 .popup-links {
-  display: flex;
-  align-items: center;
+  display:
+    flex;
 
-  gap: 12px;
+  align-items:
+    center;
 
-  margin-top: 2px;
+  gap:
+    12px;
 }
 
 .popup-links a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display:
+    inline-flex;
 
-  min-height: 48px;
+  align-items:
+    center;
 
-  padding: 0 20px;
+  justify-content:
+    center;
 
-  border-radius: 9px;
+  min-height:
+    48px;
 
-  text-decoration: none;
+  padding:
+    0 20px;
 
-  font-size: 15px;
-  font-weight: 700;
+  border-radius:
+    9px;
+
+  text-decoration:
+    none;
+
+  font-size:
+    15px;
+
+  font-weight:
+    700;
 
   transition:
-    transform 0.2s ease,
-    background 0.2s ease;
+    transform 0.2s ease;
 }
 
 .popup-links a:hover {
-  transform: translateY(-2px);
+  transform:
+    translateY(-2px);
 }
-
-
-/* =====================================================
-   GITHUB
-===================================================== */
 
 .popup-github {
-  background: var(--accent-soft);
+  background:
+    var(--accent-soft);
 
-  color: var(--accent);
-
-  border: 1px solid transparent;
+  color:
+    var(--accent);
 }
-
-
-/* =====================================================
-   LIVE DEMO
-===================================================== */
 
 .popup-demo {
-  background: var(--accent);
+  background:
+    var(--accent);
 
-  color: #ffffff;
-
-  border: 1px solid var(--accent);
+  color:
+    #ffffff;
 }
 
 
 /* =====================================================
-   ANIMATIONS
+   POPUP ANIMATIONS
 ===================================================== */
 
 @keyframes popupOverlayIn {
 
   from {
-    opacity: 0;
+    opacity:
+      0;
   }
 
   to {
-    opacity: 1;
+    opacity:
+      1;
   }
 
 }
 
+
 @keyframes popupIn {
 
   from {
-    opacity: 0;
-    transform: scale(0.94);
+    opacity:
+      0;
+
+    transform:
+      scale(0.94);
   }
 
   to {
-    opacity: 1;
-    transform: scale(1);
+    opacity:
+      1;
+
+    transform:
+      scale(1);
   }
 
 }
@@ -691,27 +922,31 @@
   }
 
   .project-popup {
-    width: 92vw;
-    height: 78vh;
-
-    grid-template-columns: 60% 40%;
+    grid-template-columns:
+      60% 40%;
   }
 
   .popup-content {
-    padding: 30px;
+    padding:
+      30px;
   }
 
   .popup-content h3 {
-    font-size: 30px;
+    font-size:
+      30px;
   }
 
   .popup-description {
-    font-size: 14px;
-    line-height: 1.45;
+    font-size:
+      14px;
+
+    line-height:
+      1.45;
   }
 
   .popup-features {
-    font-size: 13px;
+    font-size:
+      13px;
   }
 
 }
@@ -724,126 +959,226 @@
 @media (max-width: 700px) {
 
   .projects {
-    padding: 70px 5%;
+    padding:
+      50px 5% 65px;
   }
+
 
   .section-title {
-    margin-bottom: 40px;
+    margin-bottom:
+      30px;
   }
+
 
   .section-title h2 {
-    font-size: 34px;
+    font-size:
+      34px;
   }
+
 
   .projects-list {
-    grid-template-columns: 1fr;
+    grid-template-columns:
+      1fr;
 
-    gap: 24px;
+    gap:
+      24px;
   }
+
 
   .project-card {
-    height: auto;
+    height:
+      auto;
   }
 
+
   .project-image-wrapper {
-    height: 230px;
+    height:
+      230px;
+  }
+
+
+  /* MOBILE CARD POSITIONS */
+
+  .project-card-1 {
+    transform:
+      translate3d(-100px, 35px, 0)
+      scale(0.92);
+  }
+
+
+  .project-card-2 {
+    transform:
+      translate3d(0, 110px, 0)
+      scale(0.92);
+  }
+
+
+  .project-card-3 {
+    transform:
+      translate3d(100px, 35px, 0)
+      scale(0.92);
+  }
+
+
+  /* MOBILE VISIBLE */
+
+  .project-card.project-visible {
+    opacity:
+      1;
+
+    pointer-events:
+      auto;
+
+    transform:
+      translate3d(0, 0, 0)
+      scale(1);
+  }
+
+
+  .project-card-1.project-visible {
+    transition-delay:
+      0s;
+  }
+
+  .project-card-2.project-visible {
+    transition-delay:
+      0.15s;
+  }
+
+  .project-card-3.project-visible {
+    transition-delay:
+      0.30s;
   }
 
 
   /* POPUP */
 
   .popup-overlay {
-    padding: 12px;
+    padding:
+      12px;
   }
+
 
   .project-popup {
-    width: 92vw;
-    height: 88vh;
+    width:
+      92vw;
 
-    display: flex;
-    flex-direction: column;
+    height:
+      88vh;
 
-    border-radius: 20px;
+    display:
+      flex;
+
+    flex-direction:
+      column;
+
+    border-radius:
+      20px;
   }
+
 
   .popup-image-wrapper {
-    width: 100%;
-    height: 50%;
+    width:
+      100%;
 
-    min-height: 0;
+    height:
+      50%;
 
-    flex-shrink: 0;
-
-    border-radius: 20px 20px 0 0;
+    flex-shrink:
+      0;
   }
+
 
   .popup-content {
-    width: 100%;
-    height: 50%;
+    width:
+      100%;
 
-    min-height: 0;
+    height:
+      50%;
 
-    padding: 22px;
+    padding:
+      22px;
 
-    justify-content: center;
+    border-left:
+      none;
 
-    overflow: hidden;
-
-    border-left: none;
-
-    border-top: 1px solid var(--border);
-
-    background: var(--bg-popup);
+    border-top:
+      1px solid var(--border);
   }
+
 
   .popup-label {
-    margin-bottom: 7px;
+    margin-bottom:
+      7px;
 
-    font-size: 11px;
+    font-size:
+      11px;
   }
+
 
   .popup-content h3 {
-    margin-bottom: 10px;
+    margin-bottom:
+      10px;
 
-    font-size: 22px;
+    font-size:
+      22px;
   }
+
 
   .popup-description {
-    margin-bottom: 12px;
+    margin-bottom:
+      12px;
 
-    font-size: 13px;
+    font-size:
+      13px;
 
-    line-height: 1.4;
+    line-height:
+      1.4;
   }
+
 
   .popup-technologies {
-    margin-bottom: 12px;
+    margin-bottom:
+      12px;
   }
+
 
   .popup-technologies span {
-    padding: 6px 9px;
+    padding:
+      6px 9px;
 
-    font-size: 11px;
+    font-size:
+      11px;
   }
+
 
   .popup-features {
-    margin-bottom: 12px;
+    margin-bottom:
+      12px;
 
-    font-size: 12px;
+    font-size:
+      12px;
 
-    line-height: 1.3;
+    line-height:
+      1.3;
   }
+
 
   .popup-features li {
-    margin-bottom: 4px;
+    margin-bottom:
+      4px;
   }
 
+
   .popup-links a {
-    min-height: 42px;
+    min-height:
+      42px;
 
-    padding: 0 14px;
+    padding:
+      0 14px;
 
-    font-size: 12px;
+    font-size:
+      12px;
   }
 
 }
@@ -856,52 +1191,120 @@
 @media (max-width: 480px) {
 
   .projects {
-    padding: 60px 4%;
+    padding:
+      45px 4% 60px;
   }
+
+
+  .section-title {
+    margin-bottom:
+      28px;
+  }
+
 
   .section-title h2 {
-    font-size: 30px;
+    font-size:
+      30px;
   }
 
-  .section-title p {
-    font-size: 14px;
-  }
 
   .project-content {
-    padding: 21px;
+    padding:
+      21px;
   }
+
 
   .project-content h3 {
-    font-size: 19px;
+    font-size:
+      19px;
   }
+
 
   .project-image-wrapper {
-    height: 210px;
+    height:
+      210px;
   }
+
 
   .popup-overlay {
-    padding: 8px;
+    padding:
+      8px;
   }
+
 
   .project-popup {
-    width: 94vw;
-    height: 90vh;
+    width:
+      94vw;
+
+    height:
+      90vh;
   }
+
 
   .popup-content {
-    padding: 18px;
+    padding:
+      18px;
   }
+
 
   .popup-content h3 {
-    font-size: 20px;
+    font-size:
+      20px;
   }
+
 
   .popup-description {
-    font-size: 12px;
+    font-size:
+      12px;
   }
 
+
   .popup-features {
-    font-size: 11px;
+    font-size:
+      11px;
+  }
+
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .project-card {
+    opacity:
+      1;
+
+    pointer-events:
+      auto;
+
+    transform:
+      none !important;
+
+    transition:
+      none;
+  }
+
+
+  .project-card.project-visible:hover {
+    transform:
+      none !important;
+  }
+
+
+  .project-slider-track,
+  .popup-slider-track {
+    transition:
+      none;
+  }
+
+
+  .popup-overlay,
+  .project-popup {
+    animation:
+      none;
   }
 
 }

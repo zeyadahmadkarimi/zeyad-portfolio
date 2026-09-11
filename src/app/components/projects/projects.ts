@@ -1,4 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostListener,
+  OnDestroy,
+  ViewChild
+} from '@angular/core';
 
 @Component({
   selector: 'app-projects',
@@ -6,34 +13,43 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
   templateUrl: './projects.html',
   styleUrl: './projects.css'
 })
-export class Projects implements OnInit, OnDestroy {
+export class Projects implements AfterViewInit, OnDestroy {
 
-  /* =========================
-     CARD SLIDER
-  ========================= */
+  @ViewChild('projectsSection')
+  projectsSection!: ElementRef<HTMLElement>;
+
+  /* =====================================================
+     CARD IMAGE SLIDER
+  ===================================================== */
 
   currentImageIndexes: number[] = [0, 0, 0];
 
   private cardSliderInterval?: ReturnType<typeof setInterval>;
 
 
-  /* =========================
-     POPUP STATE
-  ========================= */
+  /* =====================================================
+     PROJECT ENTRANCE ANIMATION
+  ===================================================== */
+
+  projectsVisible = false;
+
+
+  /* =====================================================
+     POPUP
+  ===================================================== */
 
   isPopupOpen = false;
 
   selectedProjectIndex = 0;
 
-  /* Completely separate popup image index */
   popupImageIndex = 0;
 
   private popupSliderInterval?: ReturnType<typeof setInterval>;
 
 
-  /* =========================
-     PROJECTS
-  ========================= */
+  /* =====================================================
+     PROJECT DATA
+  ===================================================== */
 
   projects = [
     {
@@ -120,29 +136,109 @@ export class Projects implements OnInit, OnDestroy {
   ];
 
 
-  /* =========================
-     CARD SLIDER
-  ========================= */
+  /* =====================================================
+     INITIALIZE
+  ===================================================== */
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
 
-    this.cardSliderInterval = setInterval(() => {
+    this.startCardSlider();
 
-      this.projects.forEach((project, index) => {
+    setTimeout(() => {
+      this.checkProjectsVisibility();
+    }, 100);
 
-        this.currentImageIndexes[index] =
-          (this.currentImageIndexes[index] + 1) %
-          project.images.length;
-
-      });
-
-    }, 2000);
   }
 
 
-  /* =========================
+  /* =====================================================
+     SCROLL TRIGGER
+  ===================================================== */
+
+  @HostListener('window:scroll')
+  onWindowScroll(): void {
+
+    this.checkProjectsVisibility();
+
+  }
+
+
+  /* =====================================================
+     RESIZE TRIGGER
+  ===================================================== */
+
+  @HostListener('window:resize')
+  onWindowResize(): void {
+
+    this.checkProjectsVisibility();
+
+  }
+
+
+  /* =====================================================
+     CHECK PROJECTS POSITION
+  ===================================================== */
+
+  private checkProjectsVisibility(): void {
+
+    if (this.projectsVisible) {
+      return;
+    }
+
+    const section =
+      this.projectsSection?.nativeElement;
+
+    if (!section) {
+      return;
+    }
+
+    const rect =
+      section.getBoundingClientRect();
+
+    const triggerPoint =
+      window.innerHeight * 0.85;
+
+    if (
+      rect.top <= triggerPoint &&
+      rect.bottom >= 0
+    ) {
+
+      this.projectsVisible = true;
+
+    }
+
+  }
+
+
+  /* =====================================================
+     CARD IMAGE SLIDER
+  ===================================================== */
+
+  private startCardSlider(): void {
+
+    this.cardSliderInterval =
+      setInterval(() => {
+
+        this.projects.forEach(
+          (project, index) => {
+
+            this.currentImageIndexes[index] =
+              (
+                this.currentImageIndexes[index] + 1
+              ) %
+              project.images.length;
+
+          }
+        );
+
+      }, 2000);
+
+  }
+
+
+  /* =====================================================
      OPEN POPUP
-  ========================= */
+  ===================================================== */
 
   openPopup(index: number): void {
 
@@ -150,11 +246,6 @@ export class Projects implements OnInit, OnDestroy {
 
     this.selectedProjectIndex = index;
 
-    /*
-      IMPORTANT:
-      Popup always starts from image 0.
-      It does NOT read currentImageIndexes.
-    */
     this.popupImageIndex = 0;
 
     this.isPopupOpen = true;
@@ -162,31 +253,38 @@ export class Projects implements OnInit, OnDestroy {
     document.body.style.overflow = 'hidden';
 
     this.startPopupSlider();
+
   }
 
 
-  /* =========================
-     POPUP AUTO SLIDER
-  ========================= */
+  /* =====================================================
+     POPUP IMAGE SLIDER
+  ===================================================== */
 
   private startPopupSlider(): void {
 
-    const selectedProject =
-      this.projects[this.selectedProjectIndex];
+    const project =
+      this.projects[
+        this.selectedProjectIndex
+      ];
 
-    this.popupSliderInterval = setInterval(() => {
+    this.popupSliderInterval =
+      setInterval(() => {
 
-      this.popupImageIndex =
-        (this.popupImageIndex + 1) %
-        selectedProject.images.length;
+        this.popupImageIndex =
+          (
+            this.popupImageIndex + 1
+          ) %
+          project.images.length;
 
-    }, 2000);
+      }, 2000);
+
   }
 
 
-  /* =========================
+  /* =====================================================
      CLOSE POPUP
-  ========================= */
+  ===================================================== */
 
   closePopup(): void {
 
@@ -197,38 +295,47 @@ export class Projects implements OnInit, OnDestroy {
     this.popupImageIndex = 0;
 
     document.body.style.overflow = '';
+
   }
 
 
-  /* =========================
-     STOP POPUP TIMER
-  ========================= */
+  /* =====================================================
+     STOP POPUP SLIDER
+  ===================================================== */
 
   private stopPopupSlider(): void {
 
     if (this.popupSliderInterval) {
 
-      clearInterval(this.popupSliderInterval);
+      clearInterval(
+        this.popupSliderInterval
+      );
 
       this.popupSliderInterval = undefined;
+
     }
+
   }
 
 
-  /* =========================
+  /* =====================================================
      DESTROY
-  ========================= */
+  ===================================================== */
 
   ngOnDestroy(): void {
 
     if (this.cardSliderInterval) {
 
-      clearInterval(this.cardSliderInterval);
+      clearInterval(
+        this.cardSliderInterval
+      );
+
     }
 
     this.stopPopupSlider();
 
     document.body.style.overflow = '';
+
   }
 
 }

@@ -1,8 +1,12 @@
-<section class="projects" id="projects">
+<section
+  class="projects"
+  id="projects"
+  #projectsSection
+>
 
-  <!-- =========================
+  <!-- =====================================================
        SECTION TITLE
-  ========================= -->
+  ===================================================== -->
 
   <div class="section-title">
 
@@ -12,46 +16,61 @@
 
     <h2>Projects</h2>
 
-    <p>
-      Here are some of the projects I've built to apply my skills,
-      solve real-world problems, and keep learning.
-    </p>
-
   </div>
 
 
-  <!-- =========================
+  <!-- =====================================================
        PROJECT CARDS
-  ========================= -->
+  ===================================================== -->
 
   <div class="projects-list">
 
-    @for (project of projects; track project.name; let i = $index) {
+    @for (
+      project of projects;
+      track project.name;
+      let i = $index
+    ) {
 
       <article
         class="project-card"
-        (mouseenter)="openPopup(i)"
-      >
 
-        <!-- =========================
-             CARD IMAGE
-        ========================= -->
+        [class.project-visible]="projectsVisible"
+
+        [class.project-card-1]="i === 0"
+
+        [class.project-card-2]="i === 1"
+
+        [class.project-card-3]="i === 2"
+
+        (click)="openPopup(i)"
+      >
 
         <div class="project-image-wrapper">
 
           <div
             class="project-slider-track"
+
             [style.transform]="
-              'translateX(-' + (currentImageIndexes[i] * 100) + '%)'
+              'translateX(-' +
+              (currentImageIndexes[i] * 100) +
+              '%)'
             "
           >
 
-            @for (image of project.images; track image) {
+            @for (
+              image of project.images;
+              track image
+            ) {
 
               <img
                 class="project-image"
+
                 [src]="image"
-                [alt]="project.name + ' project preview'"
+
+                [alt]="
+                  project.name +
+                  ' project preview'
+                "
               />
 
             }
@@ -69,6 +88,7 @@
 
               <span
                 class="image-dot"
+
                 [class.active]="
                   currentImageIndexes[i] === imageIndex
                 "
@@ -80,10 +100,6 @@
 
         </div>
 
-
-        <!-- =========================
-             CARD CONTENT
-        ========================= -->
 
         <div class="project-content">
 
@@ -118,207 +134,245 @@
 
   </div>
 
+</section>
 
-  <!-- =================================================
-       POPUP IS OUTSIDE PROJECT CARDS
-       THIS IS THE IMPORTANT FIX
-  ================================================== -->
 
-  @if (isPopupOpen) {
+<!-- =====================================================
+     PROJECT POPUP
+===================================================== -->
+
+@if (isPopupOpen) {
+
+  <div
+    class="popup-overlay"
+    (click)="closePopup()"
+  >
 
     <div
-      class="popup-overlay"
-      (click)="closePopup()"
+      class="project-popup"
+      (click)="$event.stopPropagation()"
     >
 
-      <div
-        class="project-popup"
-        (click)="$event.stopPropagation()"
-      >
+      <div class="popup-image-wrapper">
 
-        <!-- =========================
-             POPUP IMAGE
-        ========================= -->
+        <div
+          class="popup-slider-track"
 
-        <div class="popup-image-wrapper">
+          [style.transform]="
+            'translateX(-' +
+            (popupImageIndex * 100) +
+            '%)'
+          "
+        >
 
-          <div
-            class="popup-slider-track"
-            [style.transform]="
-              'translateX(-' + (popupImageIndex * 100) + '%)'
-            "
-          >
+          @for (
+            image of projects[selectedProjectIndex].images;
+            track image
+          ) {
 
-            @for (
-              image of projects[selectedProjectIndex].images;
-              track image
-            ) {
+            <img
+              class="popup-image"
 
-              <img
-                class="popup-image"
-                [src]="image"
-                [alt]="
-                  projects[selectedProjectIndex].name +
-                  ' project preview'
-                "
-              />
+              [src]="image"
 
-            }
+              [alt]="
+                projects[selectedProjectIndex].name +
+                ' project preview'
+              "
+            />
 
-          </div>
-
-
-          <!-- POPUP DOTS -->
-
-          <div class="popup-image-indicators">
-
-            @for (
-              image of projects[selectedProjectIndex].images;
-              track image;
-              let imageIndex = $index
-            ) {
-
-              <span
-                class="popup-dot"
-                [class.active]="
-                  popupImageIndex === imageIndex
-                "
-              ></span>
-
-            }
-
-          </div>
+          }
 
         </div>
 
 
-        <!-- =========================
-             POPUP CONTENT
-        ========================= -->
+        <div class="popup-image-indicators">
 
-        <div class="popup-content">
+          @for (
+            image of projects[selectedProjectIndex].images;
+            track image;
+            let imageIndex = $index
+          ) {
 
-          <span class="popup-label">
-            PROJECT
-          </span>
+            <span
+              class="popup-dot"
 
-          <h3>
-            {{ projects[selectedProjectIndex].name }}
-          </h3>
+              [class.active]="
+                popupImageIndex === imageIndex
+              "
+            ></span>
 
-          <p class="popup-description">
-            {{ projects[selectedProjectIndex].description }}
-          </p>
+          }
 
+        </div>
 
-          <div class="popup-technologies">
-
-            @for (
-              technology of projects[selectedProjectIndex].technologies;
-              track technology
-            ) {
-
-              <span>
-                {{ technology }}
-              </span>
-
-            }
-
-          </div>
+      </div>
 
 
-          <!-- SHOPNOW -->
+      <div class="popup-content">
 
-          @if (selectedProjectIndex === 0) {
+        <span class="popup-label">
+          PROJECT
+        </span>
 
-            <ul class="popup-features">
 
-              <li>Product search, filtering and categories</li>
-              <li>Cart, wishlist, Save for Later & coupons</li>
-              <li>Order/account & warehouse management</li>
-              <li>Responsive desktop and mobile design</li>
-              <li>Deployed on Vercel</li>
+        <h3>
+          {{
+            projects[selectedProjectIndex].name
+          }}
+        </h3>
 
-            </ul>
+
+        <p class="popup-description">
+          {{
+            projects[selectedProjectIndex].description
+          }}
+        </p>
+
+
+        <div class="popup-technologies">
+
+          @for (
+            technology of projects[selectedProjectIndex].technologies;
+            track technology
+          ) {
+
+            <span>
+              {{ technology }}
+            </span>
+
+          }
+
+        </div>
+
+
+        @if (selectedProjectIndex === 0) {
+
+          <ul class="popup-features">
+
+            <li>
+              Product search, filtering and categories
+            </li>
+
+            <li>
+              Cart, wishlist, Save for Later & coupons
+            </li>
+
+            <li>
+              Order/account & warehouse management
+            </li>
+
+            <li>
+              Responsive desktop and mobile design
+            </li>
+
+            <li>
+              Deployed on Vercel
+            </li>
+
+          </ul>
+
+        }
+
+
+        @if (selectedProjectIndex === 1) {
+
+          <ul class="popup-features">
+
+            <li>
+              Create, view, edit and delete tasks
+            </li>
+
+            <li>
+              Task status, due date and date picker
+            </li>
+
+            <li>
+              Reactive Forms with custom validation
+            </li>
+
+            <li>
+              Angular routing and query parameters
+            </li>
+
+            <li>
+              ViewChild and AfterViewInit implementation
+            </li>
+
+            <li>
+              Responsive interface
+            </li>
+
+          </ul>
+
+        }
+
+
+        @if (selectedProjectIndex === 2) {
+
+          <ul class="popup-features">
+
+            <li>
+              Skills, projects and professional information
+            </li>
+
+            <li>
+              Clean and modern UI/UX
+            </li>
+
+            <li>
+              Responsive desktop and mobile design
+            </li>
+
+            <li>
+              Angular component-based architecture
+            </li>
+
+            <li>
+              Deployed on Vercel
+            </li>
+
+          </ul>
+
+        }
+
+
+        <div class="popup-links">
+
+          @if (
+            projects[selectedProjectIndex].github !== '#'
+          ) {
+
+            <a
+              [href]="projects[selectedProjectIndex].github"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="popup-github"
+            >
+              GitHub
+
+              <span>↗</span>
+            </a>
 
           }
 
 
-          <!-- TASK MANAGEMENT -->
+          @if (
+            projects[selectedProjectIndex].demo !== '#'
+          ) {
 
-          @if (selectedProjectIndex === 1) {
+            <a
+              [href]="projects[selectedProjectIndex].demo"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="popup-demo"
+            >
+              Live Demo
 
-            <ul class="popup-features">
-
-              <li>Create, view, edit and delete tasks</li>
-              <li>Task status, due date and date picker</li>
-              <li>Reactive Forms with custom validation</li>
-              <li>Angular routing and query parameters</li>
-              <li>ViewChild and AfterViewInit implementation</li>
-              <li>Responsive interface</li>
-
-            </ul>
-
-          }
-
-
-          <!-- PORTFOLIO -->
-
-          @if (selectedProjectIndex === 2) {
-
-            <ul class="popup-features">
-
-              <li>Skills, projects and professional information</li>
-              <li>Clean and modern UI/UX</li>
-              <li>Responsive desktop and mobile design</li>
-              <li>Angular component-based architecture</li>
-              <li>Deployed on Vercel</li>
-
-            </ul>
+              <span>↗</span>
+            </a>
 
           }
-
-
-          <!-- =========================
-               LINKS
-          ========================= -->
-
-          <div class="popup-links">
-
-            @if (
-              projects[selectedProjectIndex].github !== '#'
-            ) {
-
-              <a
-                [href]="projects[selectedProjectIndex].github"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="popup-github"
-              >
-                GitHub
-                <span>↗</span>
-              </a>
-
-            }
-
-
-            @if (
-              projects[selectedProjectIndex].demo !== '#'
-            ) {
-
-              <a
-                [href]="projects[selectedProjectIndex].demo"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="popup-demo"
-              >
-                Live Demo
-                <span>↗</span>
-              </a>
-
-            }
-
-          </div>
 
         </div>
 
@@ -326,6 +380,6 @@
 
     </div>
 
-  }
+  </div>
 
-</section>
+}
