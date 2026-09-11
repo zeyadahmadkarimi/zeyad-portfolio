@@ -1,11 +1,24 @@
-/* Projects Section */
+/* =====================================================
+   PROJECTS SECTION
+===================================================== */
 
 .projects {
   width: 100%;
   padding: 90px 6%;
   box-sizing: border-box;
-  background: #ffffff;
+
+  background: var(--bg-main);
+  color: var(--text-main);
+
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease;
 }
+
+
+/* =====================================================
+   SECTION TITLE
+===================================================== */
 
 .section-title {
   max-width: 760px;
@@ -17,6 +30,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+
   margin-bottom: 12px;
 }
 
@@ -24,262 +38,691 @@
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 2px;
-  color: #2563eb;
+  color: var(--accent);
 }
 
 .section-title h2 {
   margin: 0 0 15px;
+
   font-size: 42px;
   font-weight: 800;
-  color: #111827;
+  line-height: 1.2;
+
+  color: var(--text-main);
 }
 
 .section-title p {
   margin: 0;
+
   font-size: 16px;
   line-height: 1.7;
-  color: #6b7280;
+
+  color: var(--text-secondary);
 }
 
-/* Project Grid */
+
+/* =====================================================
+   PROJECT GRID
+===================================================== */
 
 .projects-list {
   width: 100%;
   max-width: 1250px;
+
   margin: 0 auto;
+
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
   gap: 28px;
+
+  align-items: start;
 }
 
-/* Project Card */
+
+/* =====================================================
+   PROJECT CARD
+===================================================== */
 
 .project-card {
-  overflow: hidden;
-  border: 1px solid #e5e7eb;
+  width: 100%;
+  height: 455px;
+
+  box-sizing: border-box;
+
+  border: 1px solid var(--border);
   border-radius: 18px;
-  background: #ffffff;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  background: var(--bg-card);
+
+  overflow: hidden;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.07);
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.35s ease,
+    border-color 0.35s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .project-card:hover {
-  transform: translateY(-7px);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.11);
 }
 
-/* Actual Image Slider */
+
+/* =====================================================
+   CARD IMAGE
+===================================================== */
 
 .project-image-wrapper {
   position: relative;
+
   width: 100%;
   height: 245px;
+
   overflow: hidden;
-  background: #f3f4f6;
+
+  border-radius: 18px 18px 0 0;
+
+  background: var(--bg-secondary);
 }
+
+
+/* =====================================================
+   CARD SLIDER
+===================================================== */
 
 .project-slider-track {
   display: flex;
+
   width: 100%;
   height: 100%;
-  transition: transform 0.7s ease-in-out;
+
+  transition:
+    transform 0.7s ease-in-out;
+
+  will-change: transform;
 }
 
 .project-image {
   flex: 0 0 100%;
+
   width: 100%;
   height: 100%;
+
+  min-width: 100%;
+
   display: block;
+
   object-fit: cover;
+
+  background: var(--bg-secondary);
 }
 
-/* Slider Indicators */
+
+/* =====================================================
+   CARD DOTS
+===================================================== */
 
 .image-indicators {
   position: absolute;
+
   left: 50%;
   bottom: 12px;
+
   transform: translateX(-50%);
+
   display: flex;
   align-items: center;
+
   gap: 6px;
+
   padding: 5px 8px;
+
   border-radius: 20px;
+
   background: rgba(0, 0, 0, 0.45);
+
   backdrop-filter: blur(5px);
+
+  z-index: 5;
 }
 
 .image-dot {
   width: 6px;
   height: 6px;
+
   border-radius: 50%;
+
   background: rgba(255, 255, 255, 0.55);
-  transition: all 0.3s ease;
+
+  transition:
+    width 0.3s ease,
+    background 0.3s ease;
 }
 
 .image-dot.active {
   width: 18px;
+
   border-radius: 10px;
+
   background: #ffffff;
 }
 
-/* Project Content */
+
+/* =====================================================
+   CARD CONTENT
+===================================================== */
 
 .project-content {
-  padding: 26px;
+  padding: 25px;
 }
 
 .project-content h3 {
   margin: 0 0 12px;
-  font-size: 21px;
+
+  font-size: 20px;
+  font-weight: 700;
   line-height: 1.35;
-  color: #111827;
+
+  color: var(--text-main);
 }
 
 .project-description {
   margin: 0 0 18px;
+
   font-size: 14px;
   line-height: 1.7;
-  color: #6b7280;
+
+  color: var(--text-secondary);
 }
 
-/* Technologies */
+
+/* =====================================================
+   TECHNOLOGIES
+===================================================== */
 
 .technologies {
   display: flex;
   flex-wrap: wrap;
+
   gap: 8px;
-  margin-bottom: 20px;
 }
 
 .technologies span {
   padding: 6px 10px;
+
   border-radius: 7px;
-  background: #eff6ff;
-  color: #2563eb;
+
+  background: var(--accent-soft);
+
+  color: var(--accent);
+
   font-size: 12px;
   font-weight: 600;
 }
 
-/* Features */
 
-.project-features {
-  margin: 0 0 24px;
-  padding-left: 19px;
-  color: #4b5563;
-}
+/* =====================================================
+   POPUP OVERLAY
+===================================================== */
 
-.project-features li {
-  margin-bottom: 8px;
-  font-size: 13px;
-  line-height: 1.5;
-}
+.popup-overlay {
+  position: fixed;
 
-/* Project Links */
+  inset: 0;
 
-.project-links {
+  width: 100%;
+  height: 100%;
+
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.project-links a {
-  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 7px;
-  padding: 10px 16px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 700;
-  transition: all 0.25s ease;
+
+  padding: 20px;
+
+  box-sizing: border-box;
+
+  background: var(--overlay);
+
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+
+  z-index: 9999;
+
+  animation:
+    popupOverlayIn 0.2s ease;
 }
 
-.github-link {
-  border: 1px solid #d1d5db;
-  color: #111827;
+
+/* =====================================================
+   POPUP
+===================================================== */
+
+.project-popup {
+  width: min(94vw, 1500px);
+  height: min(82vh, 760px);
+
+  display: grid;
+
+  grid-template-columns: 65% 35%;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+
+  background: var(--bg-popup);
+
+  border: 1px solid var(--border);
+
+  border-radius: 24px;
+
+  box-shadow:
+    0 35px 100px rgba(0, 0, 0, 0.35);
+
+  animation:
+    popupIn 0.25s ease;
+
+  z-index: 10000;
+}
+
+
+/* =====================================================
+   POPUP IMAGE AREA
+===================================================== */
+
+.popup-image-wrapper {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  min-width: 0;
+  min-height: 0;
+
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--bg-secondary);
+}
+
+
+/* =====================================================
+   POPUP SLIDER
+===================================================== */
+
+.popup-slider-track {
+  display: flex;
+
+  width: 100%;
+  height: 100%;
+
+  transition:
+    transform 0.7s ease-in-out;
+
+  will-change: transform;
+}
+
+
+/* =====================================================
+   POPUP IMAGE
+===================================================== */
+
+.popup-image {
+  flex: 0 0 100%;
+
+  width: 100%;
+  height: 100%;
+
+  min-width: 100%;
+  min-height: 100%;
+
+  display: block;
+
+  object-fit: contain;
+
+  background: var(--bg-secondary);
+}
+
+
+/* =====================================================
+   POPUP DOTS
+===================================================== */
+
+.popup-image-indicators {
+  position: absolute;
+
+  left: 50%;
+  bottom: 18px;
+
+  transform: translateX(-50%);
+
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+
+  padding: 6px 10px;
+
+  border-radius: 20px;
+
+  background: rgba(0, 0, 0, 0.45);
+
+  backdrop-filter: blur(5px);
+
+  z-index: 5;
+}
+
+.popup-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.65);
+
+  transition:
+    width 0.3s ease,
+    background 0.3s ease;
+}
+
+.popup-dot.active {
+  width: 20px;
+
+  border-radius: 10px;
+
   background: #ffffff;
 }
 
-.github-link:hover {
-  background: #f3f4f6;
+
+/* =====================================================
+   POPUP CONTENT
+===================================================== */
+
+.popup-content {
+  width: 100%;
+  height: 100%;
+
+  min-width: 0;
+  min-height: 0;
+
+  padding: 42px 44px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+
+  background: var(--bg-popup);
+
+  color: var(--text-main);
+
+  border-left: 1px solid var(--border);
 }
 
-.demo-link {
-  color: #ffffff;
-  background: #2563eb;
-  border: 1px solid #2563eb;
+
+/* =====================================================
+   POPUP LABEL
+===================================================== */
+
+.popup-label {
+  display: block;
+
+  margin-bottom: 14px;
+
+  color: var(--accent);
+
+  font-size: 14px;
+  font-weight: 700;
+
+  letter-spacing: 3px;
 }
 
-.demo-link:hover {
-  background: #1d4ed8;
-  border-color: #1d4ed8;
+
+/* =====================================================
+   POPUP TITLE
+===================================================== */
+
+.popup-content h3 {
+  margin: 0 0 18px;
+
+  color: var(--text-main);
+
+  font-size: clamp(30px, 2.5vw, 48px);
+
+  line-height: 1.12;
+
+  font-weight: 700;
 }
 
-.project-links a span {
+
+/* =====================================================
+   POPUP DESCRIPTION
+===================================================== */
+
+.popup-description {
+  margin: 0 0 22px;
+
+  color: var(--text-secondary);
+
+  font-size: 17px;
+
+  line-height: 1.6;
+}
+
+
+/* =====================================================
+   POPUP TECHNOLOGIES
+===================================================== */
+
+.popup-technologies {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 9px;
+
+  margin-bottom: 22px;
+}
+
+.popup-technologies span {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 8px 13px;
+
+  border-radius: 8px;
+
+  background: var(--accent-soft);
+
+  color: var(--accent);
+
+  font-size: 14px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+
+/* =====================================================
+   POPUP FEATURES
+===================================================== */
+
+.popup-features {
+  margin: 0 0 24px;
+
+  padding-left: 20px;
+
+  color: var(--text-secondary);
+
   font-size: 15px;
+
+  line-height: 1.5;
 }
 
-/* Dark Mode */
-
-@media (prefers-color-scheme: dark) {
-  .projects {
-    background: #0f172a;
-  }
-
-  .section-title h2 {
-    color: #f8fafc;
-  }
-
-  .section-title p {
-    color: #94a3b8;
-  }
-
-  .project-card {
-    background: #111827;
-    border-color: #1f2937;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-  }
-
-  .project-content h3 {
-    color: #f8fafc;
-  }
-
-  .project-description {
-    color: #94a3b8;
-  }
-
-  .technologies span {
-    background: rgba(37, 99, 235, 0.15);
-    color: #60a5fa;
-  }
-
-  .project-features {
-    color: #cbd5e1;
-  }
-
-  .github-link {
-    color: #f8fafc;
-    background: #111827;
-    border-color: #374151;
-  }
-
-  .github-link:hover {
-    background: #1f2937;
-  }
+.popup-features li {
+  margin-bottom: 6px;
 }
 
-/* Responsive */
+.popup-features li:last-child {
+  margin-bottom: 0;
+}
 
-@media (max-width: 1000px) {
+
+/* =====================================================
+   POPUP LINKS
+===================================================== */
+
+.popup-links {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  margin-top: 2px;
+}
+
+.popup-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 48px;
+
+  padding: 0 20px;
+
+  border-radius: 9px;
+
+  text-decoration: none;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.popup-links a:hover {
+  transform: translateY(-2px);
+}
+
+
+/* =====================================================
+   GITHUB
+===================================================== */
+
+.popup-github {
+  background: var(--accent-soft);
+
+  color: var(--accent);
+
+  border: 1px solid transparent;
+}
+
+
+/* =====================================================
+   LIVE DEMO
+===================================================== */
+
+.popup-demo {
+  background: var(--accent);
+
+  color: #ffffff;
+
+  border: 1px solid var(--accent);
+}
+
+
+/* =====================================================
+   ANIMATIONS
+===================================================== */
+
+@keyframes popupOverlayIn {
+
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+
+}
+
+@keyframes popupIn {
+
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1100px) {
+
   .projects-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
   }
+
+  .project-popup {
+    width: 92vw;
+    height: 78vh;
+
+    grid-template-columns: 60% 40%;
+  }
+
+  .popup-content {
+    padding: 30px;
+  }
+
+  .popup-content h3 {
+    font-size: 30px;
+  }
+
+  .popup-description {
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  .popup-features {
+    font-size: 13px;
+  }
+
 }
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media (max-width: 700px) {
+
   .projects {
     padding: 70px 5%;
   }
@@ -294,15 +737,124 @@
 
   .projects-list {
     grid-template-columns: 1fr;
+
     gap: 24px;
+  }
+
+  .project-card {
+    height: auto;
   }
 
   .project-image-wrapper {
     height: 230px;
   }
+
+
+  /* POPUP */
+
+  .popup-overlay {
+    padding: 12px;
+  }
+
+  .project-popup {
+    width: 92vw;
+    height: 88vh;
+
+    display: flex;
+    flex-direction: column;
+
+    border-radius: 20px;
+  }
+
+  .popup-image-wrapper {
+    width: 100%;
+    height: 50%;
+
+    min-height: 0;
+
+    flex-shrink: 0;
+
+    border-radius: 20px 20px 0 0;
+  }
+
+  .popup-content {
+    width: 100%;
+    height: 50%;
+
+    min-height: 0;
+
+    padding: 22px;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-left: none;
+
+    border-top: 1px solid var(--border);
+
+    background: var(--bg-popup);
+  }
+
+  .popup-label {
+    margin-bottom: 7px;
+
+    font-size: 11px;
+  }
+
+  .popup-content h3 {
+    margin-bottom: 10px;
+
+    font-size: 22px;
+  }
+
+  .popup-description {
+    margin-bottom: 12px;
+
+    font-size: 13px;
+
+    line-height: 1.4;
+  }
+
+  .popup-technologies {
+    margin-bottom: 12px;
+  }
+
+  .popup-technologies span {
+    padding: 6px 9px;
+
+    font-size: 11px;
+  }
+
+  .popup-features {
+    margin-bottom: 12px;
+
+    font-size: 12px;
+
+    line-height: 1.3;
+  }
+
+  .popup-features li {
+    margin-bottom: 4px;
+  }
+
+  .popup-links a {
+    min-height: 42px;
+
+    padding: 0 14px;
+
+    font-size: 12px;
+  }
+
 }
 
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
 @media (max-width: 480px) {
+
   .projects {
     padding: 60px 4%;
   }
@@ -326,4 +878,30 @@
   .project-image-wrapper {
     height: 210px;
   }
+
+  .popup-overlay {
+    padding: 8px;
+  }
+
+  .project-popup {
+    width: 94vw;
+    height: 90vh;
+  }
+
+  .popup-content {
+    padding: 18px;
+  }
+
+  .popup-content h3 {
+    font-size: 20px;
+  }
+
+  .popup-description {
+    font-size: 12px;
+  }
+
+  .popup-features {
+    font-size: 11px;
+  }
+
 }

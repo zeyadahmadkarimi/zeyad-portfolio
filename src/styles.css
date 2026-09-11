@@ -64,12 +64,19 @@ body {
   --bg-main: #f7f9fc;
   --bg-secondary: #ffffff;
 
+  --bg-card: #ffffff;
+  --bg-popup: #ffffff;
+
   --text-main: #151922;
   --text-secondary: #667085;
 
   --border: rgba(20, 30, 50, 0.09);
 
   --accent: #438cff;
+
+  --accent-soft: rgba(67, 140, 255, 0.10);
+
+  --overlay: rgba(15, 23, 42, 0.58);
 }
 
 
@@ -81,6 +88,9 @@ body.dark-mode {
   --bg-main: #090c11;
   --bg-secondary: #0f131a;
 
+  --bg-card: #0f131a;
+  --bg-popup: #0f131a;
+
   --text-main: #f1f5f9;
   --text-secondary: #8994a5;
 
@@ -88,9 +98,13 @@ body.dark-mode {
 
   --accent: #438cff;
 
-  background: #090c11;
+  --accent-soft: rgba(67, 140, 255, 0.14);
 
-  color: #f1f5f9;
+  --overlay: rgba(0, 0, 0, 0.68);
+
+  background: var(--bg-main);
+
+  color: var(--text-main);
 }
 
 
